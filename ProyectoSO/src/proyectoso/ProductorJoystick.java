@@ -14,26 +14,29 @@ import java.util.logging.Logger;
  * @author orian
  */
 public class ProductorJoystick extends Thread {
+
     Semaphore mutex;
     Semaphore semProJoystick;
-    
-    public ProductorJoystick(Semaphore mutex, Semaphore semProJoystick) {
+    Semaphore semEnsJoystick;
+
+    public ProductorJoystick(Semaphore mutex, Semaphore semProJoystick, Semaphore semEnsJoystick) {
         this.mutex = mutex;
         this.semProJoystick = semProJoystick;
+        this.semEnsJoystick = semEnsJoystick;
     }
-    
+
+
     public void run() {
         while (true) {
             try {
-                if (Central.numJoystick < Central.almacenJoystick) {
-                    this.semProJoystick.acquire();
-                        this.mutex.acquire();
-                            Central.numJoystick++;
-                            Central.almacenJoystick--;
-                            System.out.println("El valor de joystick es " + Central.numJoystick);
-                        this.mutex.release();
-                    Thread.sleep(1000);    
-                }
+
+                this.semProJoystick.acquire();
+                this.mutex.acquire();
+                Central.numJoystick++;
+                System.out.println("El valor de joystick es " + Central.numJoystick);
+                this.mutex.release();
+                Thread.sleep(1000);
+                this.semEnsJoystick.release();
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,5 +44,5 @@ public class ProductorJoystick extends Thread {
         }
 
     }
-    
+
 }

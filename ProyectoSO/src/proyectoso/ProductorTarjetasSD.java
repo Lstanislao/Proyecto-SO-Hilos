@@ -16,23 +16,29 @@ import java.util.logging.Logger;
 public class ProductorTarjetasSD extends Thread{
     Semaphore mutex;
     Semaphore semProTarjetasSD;
-    
-    public ProductorTarjetasSD(Semaphore mutex, Semaphore semProTarjetasSD) {
+    Semaphore semEnsTarjetasSD;
+
+    public ProductorTarjetasSD(Semaphore mutex, Semaphore semProTarjetasSD, Semaphore semEnsTarjetasSD) {
         this.mutex = mutex;
         this.semProTarjetasSD = semProTarjetasSD;
+        this.semEnsTarjetasSD = semEnsTarjetasSD;
     }
+    
+    
+
     
     public void run() {
         while (true) {
             try {
-                if (Central.numTarjetasSD < Central.almacenTarjetasSD) {
-                    this.semProTarjetasSD.acquire();
-                        this.mutex.acquire();
-                            Central.numTarjetasSD++;
-                            System.out.println("El valor de tarjetaSD es " + Central.numTarjetasSD);
-                        this.mutex.release();
-                    Thread.sleep(1000);    
-                }
+               
+                this.semProTarjetasSD.acquire();
+                this.mutex.acquire();
+                Central.numTarjetasSD++;
+                System.out.println("El valor de tarjetaSD es " + Central.numTarjetasSD);
+                this.mutex.release();
+                Thread.sleep(1000);
+                this.semEnsTarjetasSD.release(2);
+                
                 
 
             } catch (InterruptedException ex) {
