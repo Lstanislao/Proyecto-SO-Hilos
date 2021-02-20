@@ -31,18 +31,18 @@ public class ProductorPantallas extends Thread {
         while (true) {
             
             try {
-                if (Central.almacenPantallas > (Central.numPantallasNormales + Central.nunPantallasTactiles)) {
+               
                     
-                    this.semProPantallas.acquire();
-                    this.mutex.acquire();
-                    Central.numPantallasNormales++;
-                    Central.nunPantallasTactiles++;
-                    System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
-                    System.out.println("El valor de pantallas tactil es " + Central.nunPantallasTactiles );
-                    this.mutex.release();
-                    Thread.sleep(3000);//3 dias 
-                    this.semEnsPantallas.release();
-                }
+                this.semProPantallas.acquire();
+                this.mutex.acquire();
+                Central.numPantallasNormales++;
+                Central.numPantallasTactiles++;
+                System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
+                System.out.println("El valor de pantallas tactil es " + Central.numPantallasTactiles);
+                this.mutex.release();
+                Thread.sleep(3000);//3 dias 
+                this.semEnsPantallas.release();
+                
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);

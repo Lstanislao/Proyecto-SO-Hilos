@@ -15,7 +15,7 @@ public class Central {
     
     public static volatile int almacenPantallas = 45;
     public static volatile int numPantallasNormales = 0;
-    public static volatile int nunPantallasTactiles = 0;
+    public static volatile int numPantallasTactiles = 0;
     public static int maxProPantalla = 5;
     
     public static volatile int almacenTarjetasSD = 15;
