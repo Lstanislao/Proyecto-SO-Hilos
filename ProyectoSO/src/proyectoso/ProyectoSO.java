@@ -25,13 +25,17 @@ public class ProyectoSO {
 //        Dashboard ventana = new Dashboard ();
 //        ventana.setVisible(true);
 //        
+
+          Central.CargarInfomacionInicial();
         Semaphore mutexBotones = new Semaphore(1);
-        Semaphore semProBotones = new Semaphore(45);
+        System.out.println("iniciando semProBotones" + Central.maxAlmacenBotones); 
+        
+        Semaphore semProBotones = new Semaphore(Central.maxAlmacenBotones);
         Semaphore semEnsBotones = new Semaphore(0);
         
         
         Semaphore mutexPantallas = new Semaphore(1);
-        Semaphore semProPantallas = new Semaphore(40);
+        Semaphore semProPantallas = new Semaphore(Central.maxAlmacenPantallas);
         Semaphore semEnsPantallas = new Semaphore(0);
         
         
@@ -43,8 +47,8 @@ public class ProyectoSO {
         Semaphore semEnsTarjetaSD = new Semaphore(0);
         
         
-        Semaphore semProJoystick = new Semaphore(20);
-        Semaphore semProTarjetaSD = new Semaphore(15);
+        Semaphore semProJoystick = new Semaphore(Central.maxAlmacenJoystick);
+        Semaphore semProTarjetaSD = new Semaphore(Central.maxAlmacenTarjetas);
 
         ProductorBotones a = new ProductorBotones(mutexBotones, semProBotones, semEnsBotones);
         ProductorPantallas b = new ProductorPantallas(mutexPantallas, semProPantallas, semEnsPantallas);
@@ -58,7 +62,7 @@ public class ProyectoSO {
         a.start();
         b.start();
         c.start();
-        //d.start();
+        d.start();
         e.start();
 
        

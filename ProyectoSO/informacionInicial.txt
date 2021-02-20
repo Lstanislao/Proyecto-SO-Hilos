@@ -1,6 +1,6 @@
 Dia en segundos: 1000
 Dias entre despachos: 10
-Capacidad maxima en almacen de botones: 45
+Capacidad maxima en almacen de botones: 4
 Capacidad maxima en almacen de pantallas: 40
 Capacidad maxima en almacen de joysticks: 20
 Capacidad maxima en almacen de tarjetas: 15
