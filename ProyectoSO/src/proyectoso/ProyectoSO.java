@@ -25,6 +25,7 @@ public class ProyectoSO {
         Dashboard ventana = new Dashboard ();
         ventana.setVisible(true);
         
+        
 //        Semaphore mutex = new Semaphore(1);
 //        Semaphore semProductor = new  Semaphore (6);
 //        Semaphore semConsumidor = new Semaphore (0);
