@@ -31,14 +31,14 @@ public class ProductorPantallas extends Thread {
         while (true) {
             
             try {
-                if (Central.almacenPantallas > (Central.numPantallasNormales + Central.numPantallasTactil)) {
+                if (Central.almacenPantallas > (Central.numPantallasNormales + Central.nunPantallasTactiles)) {
                     
                     this.semProPantallas.acquire();
                     this.mutex.acquire();
                     Central.numPantallasNormales++;
-                    Central.numPantallasTactil++;
+                    Central.nunPantallasTactiles++;
                     System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
-                    System.out.println("El valor de pantallas tactil es " + Central.numPantallasTactil );
+                    System.out.println("El valor de pantallas tactil es " + Central.nunPantallasTactiles );
                     this.mutex.release();
                     Thread.sleep(3000);//3 dias 
                     this.semEnsPantallas.release();

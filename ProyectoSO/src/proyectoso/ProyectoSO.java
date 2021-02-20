@@ -5,6 +5,7 @@
  */
 package proyectoso;
 
+import ventanas.Dashboard;
 import java.util.concurrent.Semaphore;
 
 /**
@@ -35,7 +36,13 @@ public class ProyectoSO {
 //        g.start();
 //        f.start();
 
-
+//    public static volatile int almacenTarjetasSD = 15;
+//    public static volatile int numTarjetasSD = 0;
+//    public static int maxProTarjetasSD = 4;
+//    
+//    public static volatile int almacenJoystick = 20;
+//    public static volatile int numJoystick = 0;
+//    public static int maxProJoystick = 4;
         
         
     }
