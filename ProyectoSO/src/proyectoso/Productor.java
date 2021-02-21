@@ -33,8 +33,8 @@ public class Productor extends Thread {
             try {
                 this.semProductor.acquire();
                 this.mutex.acquire();
-                    ProyectoSO.r++;
-                    System.out.println("El valor de r es " + ProyectoSO.r + " y lo cambió " + this.name);
+                    //ProyectoSO.r++;
+                    //System.out.println("El valor de r es " + ProyectoSO.r + " y lo cambió " + this.name);
                 this.mutex.release();
                 Thread.sleep(1000); 
                 this.semComsumidor.release();

@@ -25,18 +25,19 @@ public class ProductorJoystick extends Thread {
         this.semEnsJoystick = semEnsJoystick;
     }
 
-
     public void run() {
         while (true) {
             try {
-
-                this.semProJoystick.acquire();
-                this.mutex.acquire();
-                Central.numJoystick++;
-                System.out.println("El valor de joystick es " + Central.numJoystick);
-                this.mutex.release();
-                Thread.sleep(1000);
-                this.semEnsJoystick.release();
+                if (Central.maxAlmacenJoystick - Central.numJoystick > 0) {
+                    
+                    this.semProJoystick.acquire();
+                    this.mutex.acquire();
+                        Central.numJoystick++;
+                        System.out.println("El valor de joystick es " + Central.numJoystick);
+                    this.mutex.release();
+                    Thread.sleep(1000);
+                    this.semEnsJoystick.release();
+                }
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);

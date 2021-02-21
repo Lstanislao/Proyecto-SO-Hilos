@@ -30,8 +30,8 @@ public class Consumidor extends Thread{
             try {
                 this.semConsumidor.acquire(3);
                 this.mutex.acquire();
-                    ProyectoSO.r--;
-                    System.out.println("El valor de r es " +ProyectoSO.r+ " y lo cambió "+this.name);
+                    //ProyectoSO.r--;
+                    //System.out.println("El valor de r es " +ProyectoSO.r+ " y lo cambió "+this.name);
                 this.mutex.release();
                 Thread.sleep(100);
                 this.semProductor.release();

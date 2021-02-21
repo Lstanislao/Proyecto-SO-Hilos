@@ -22,40 +22,40 @@ public class ProductorPantallasNormales extends Thread {
     Semaphore semEnsPantallasTactil;
 
     public ProductorPantallasNormales(
-            Semaphore mutexNormal, Semaphore mutexTactil, 
-            Semaphore semProPantallasNormal, Semaphore semEnsPantallasNormal, 
+            Semaphore mutexNormal, Semaphore mutexTactil,
+            Semaphore semProPantallasNormal, Semaphore semEnsPantallasNormal,
             Semaphore semEnsPantallasTactil) {
-        
+
         this.mutexNormal = mutexNormal;
         this.mutexTactil = mutexTactil;
         this.semProPantallas = semProPantallasNormal;
         this.semEnsPantallasNormal = semEnsPantallasNormal;
         this.semEnsPantallasTactil = semEnsPantallasTactil;
-        
+
     }
- 
-    
+
     public void run() {
         while (true) {
-            
+
             try {
-               
-                //Pantalla normal
-                this.semProPantallas.acquire(2);
-                this.mutexNormal.acquire();
-                Central.numPantallasNormales++;
-                System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
-                this.mutexNormal.release();
-                Thread.sleep(1000);//1 dias 
-                this.semEnsPantallasNormal.release();
-                
-                //Pantalla tactil
-                this.mutexTactil.acquire();
-                Central.numPantallasTactiles++;
-                System.out.println("El valor de pantallas tactiles es " + Central.numPantallasNormales);
-                this.mutexTactil.release();
-                Thread.sleep(2000);//2 dias 
-                this.semEnsPantallasTactil.release();             
+                if ( (Central.maxAlmacenPantallas - (Central.numPantallasNormales + Central.numPantallasNormales)) > 0) {
+                    //Pantalla normal
+                    this.semProPantallas.acquire(2);
+                    this.mutexNormal.acquire();
+                        Central.numPantallasNormales++;
+                        System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
+                    this.mutexNormal.release();
+                    Thread.sleep(1000);//1 dias 
+                    this.semEnsPantallasNormal.release();
+
+                    //Pantalla tactil
+                    this.mutexTactil.acquire();
+                        Central.numPantallasTactiles++;
+                        System.out.println("El valor de pantallas tactiles es " + Central.numPantallasNormales);
+                    this.mutexTactil.release();
+                    Thread.sleep(2000);//2 dias 
+                    this.semEnsPantallasTactil.release();
+                }
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);

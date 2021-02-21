@@ -17,7 +17,7 @@ public class ProyectoSO {
     /**
      * @param args the command line arguments
      */
-    public static volatile int r;
+
     public static int dias = 100;
 
     public static void main(String[] args) {
@@ -25,31 +25,43 @@ public class ProyectoSO {
 //        Dashboard ventana = new Dashboard ();
 //        ventana.setVisible(true);
 //        
+
+        Central.CargarInfomacionInicial();
         Semaphore mutexBotones = new Semaphore(1);
-        Semaphore semProBotones = new Semaphore(3);
+
+        
+        System.out.println("iniciando semProBotones" + Central.maxAlmacenBotones); 
+        
+        Semaphore semProBotones = new Semaphore(Central.maxAlmacenBotones);
         Semaphore semEnsBotones = new Semaphore(0);
         
+        
         Semaphore mutexPantallasNormal = new Semaphore(1);
-        Semaphore mutexPantallasTactil = new Semaphore(1);
-        Semaphore semProPantallas = new Semaphore(40);
-        Semaphore semEnsPantallasTactil = new Semaphore(0);
+        Semaphore mutexPantallasTactil= new Semaphore(1);
+        Semaphore semProPantallas = new Semaphore(Central.maxAlmacenPantallas);
         Semaphore semEnsPantallasNormal = new Semaphore(0);
-          
+        Semaphore semEnsPantallasTactil = new Semaphore(0);
+        
         Semaphore mutexTarjetaSD = new Semaphore(1);
-        Semaphore semProTarjetaSD = new Semaphore(15);
+        Semaphore mutexJoystick = new Semaphore(1);
+        
+        Semaphore semEnsJoystick = new Semaphore(0);
         Semaphore semEnsTarjetaSD = new Semaphore(0);
         
-        Semaphore mutexJoystick = new Semaphore(1);
-        Semaphore semProJoystick = new Semaphore(20);
-        Semaphore semEnsJoystick = new Semaphore(0);
+        Semaphore semProJoystick = new Semaphore(Central.maxAlmacenJoystick);
+        Semaphore semProTarjetaSD = new Semaphore(Central.maxAlmacenTarjetas);
+        
         
         
         ProductorBotones a = new ProductorBotones( mutexBotones, semProBotones, semEnsBotones);
-        ProductorPantallasNormales b = new ProductorPantallasNormales( mutexPantallasNormal, mutexPantallasTactil,
+       
+        ProductorPantallasNormales b = new ProductorPantallasNormales( 
+              mutexPantallasNormal, mutexPantallasTactil,
               semProPantallas,  semEnsPantallasTactil, semEnsPantallasNormal );
-        ProductorTarjetasSD c = new ProductorTarjetasSD( mutexTarjetaSD,  semProTarjetaSD, semEnsTarjetaSD );
-        ProductorJoystick d = new ProductorJoystick( mutexJoystick, semProJoystick, semEnsJoystick );
         
+        ProductorTarjetasSD c = new ProductorTarjetasSD( mutexTarjetaSD,  semProTarjetaSD, semEnsTarjetaSD );
+        
+        ProductorJoystick d = new ProductorJoystick( mutexJoystick, semProJoystick, semEnsJoystick );
 
 
         Ensamblador e = new Ensamblador( mutexBotones, mutexPantallasNormal,mutexPantallasTactil, 

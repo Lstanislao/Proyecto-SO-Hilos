@@ -49,11 +49,12 @@ public class Ensamblador extends Thread{
             try {
                 
                 //BOTONES
+                System.out.println("entro");
                 this.semEnsBotones.acquire(5);
+                System.out.println("entro2");
                 this.mutexBotones.acquire();
-                
+                    System.out.println("CONSUMI BOTONES");
                     Central.numBotones = Central.numBotones - 5; 
-                    Central.almacenBotones= Central.numBotones + 5;
                     System.out.println("El valor de botones es " + Central.numBotones );
                 
                 this.mutexBotones.release();
@@ -62,7 +63,7 @@ public class Ensamblador extends Thread{
                 //JOYSTICK
                 this.semEnsJoystick.acquire(2);
                 this.mutexJoystick.acquire();
-                    
+                    System.out.println("CONSUMI JOYSTICK");
                     Central.numJoystick = Central.numJoystick -2;
                     System.out.println("El valor de joystick es " + Central.numJoystick );
                     
@@ -72,7 +73,7 @@ public class Ensamblador extends Thread{
                 //TAREJTA SD
                 this.semEnsTarjetasSD.acquire(1);
                 this.mutexTarjetaSD.acquire();
-                    
+                    System.out.println("CONSUMI SD");
                     Central.numTarjetasSD = Central.numTarjetasSD -1;
                     System.out.println("El valor de tarjeta es " + Central.numTarjetasSD );
                     
@@ -82,8 +83,8 @@ public class Ensamblador extends Thread{
                 //Pantalla
                 this.semEnsPantallasNormal.acquire(1);
                 this.mutexPantallasNormal.acquire();
-                   
-                    Central.numPantallasTactiles = Central.numPantallasNormales - 1;
+                   System.out.println("CONSUMI pantalla normal");
+                    Central.numPantallasNormales = Central.numPantallasNormales - 1;
                     System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
                     
                 this.mutexPantallasNormal.release();
@@ -91,7 +92,7 @@ public class Ensamblador extends Thread{
                 //Pantalla tactil
                 this.semEnsPantallasTactil.acquire(1);
                 this.mutexPantallasTactil.acquire();
-                    
+                     System.out.println("CONSUMI pantalla tactil");
                     Central.numPantallasTactiles = Central.numPantallasTactiles - 1;
                     System.out.println("El valor de pantallas normales es " + Central.numPantallasTactiles );
                                      
