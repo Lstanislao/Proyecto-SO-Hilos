@@ -9,7 +9,7 @@ package proyectoso;
 
 public class Central {
     
-    public static volatile int almacenBotones = 45;
+    public static volatile int almacenBotones = 7;
     public static volatile int numBotones = 0;
     public static int maxProBotones = 3;
     

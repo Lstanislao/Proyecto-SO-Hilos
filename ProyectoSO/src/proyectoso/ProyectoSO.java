@@ -26,60 +26,48 @@ public class ProyectoSO {
 //        ventana.setVisible(true);
 //        
         Semaphore mutexBotones = new Semaphore(1);
-        Semaphore semProBotones = new Semaphore(45);
+        Semaphore semProBotones = new Semaphore(3);
         Semaphore semEnsBotones = new Semaphore(0);
         
-        
-        Semaphore mutexPantallas = new Semaphore(1);
+        Semaphore mutexPantallasNormal = new Semaphore(1);
+        Semaphore mutexPantallasTactil = new Semaphore(1);
         Semaphore semProPantallas = new Semaphore(40);
-        Semaphore semEnsPantallas = new Semaphore(0);
-        
-        
+        Semaphore semEnsPantallasTactil = new Semaphore(0);
+        Semaphore semEnsPantallasNormal = new Semaphore(0);
+          
         Semaphore mutexTarjetaSD = new Semaphore(1);
-        Semaphore mutexJoystick = new Semaphore(1);
-        
-
-        Semaphore semEnsJoystick = new Semaphore(0);
+        Semaphore semProTarjetaSD = new Semaphore(15);
         Semaphore semEnsTarjetaSD = new Semaphore(0);
         
-        
+        Semaphore mutexJoystick = new Semaphore(1);
         Semaphore semProJoystick = new Semaphore(20);
-        Semaphore semProTarjetaSD = new Semaphore(15);
+        Semaphore semEnsJoystick = new Semaphore(0);
+        
+        
+        ProductorBotones a = new ProductorBotones( mutexBotones, semProBotones, semEnsBotones);
+        ProductorPantallasNormales b = new ProductorPantallasNormales( mutexPantallasNormal, mutexPantallasTactil,
+              semProPantallas,  semEnsPantallasTactil, semEnsPantallasNormal );
+        ProductorTarjetasSD c = new ProductorTarjetasSD( mutexTarjetaSD,  semProTarjetaSD, semEnsTarjetaSD );
+        ProductorJoystick d = new ProductorJoystick( mutexJoystick, semProJoystick, semEnsJoystick );
+        
 
-        ProductorBotones a = new ProductorBotones(mutexBotones, semProBotones, semEnsBotones);
-        ProductorPantallas b = new ProductorPantallas(mutexPantallas, semProPantallas, semEnsPantallas);
-        ProductorTarjetasSD c = new ProductorTarjetasSD(mutexTarjetaSD,  semProTarjetaSD, semEnsTarjetaSD );
-        ProductorJoystick d = new ProductorJoystick(mutexJoystick, semProJoystick, semEnsJoystick );
 
-        Ensamblador e = new Ensamblador(mutexBotones, mutexPantallas, mutexTarjetaSD, mutexJoystick,
-                semEnsBotones, semEnsPantallas, semEnsJoystick, semEnsTarjetaSD,
-                semProBotones, semProPantallas, semProJoystick, semProTarjetaSD);
+        Ensamblador e = new Ensamblador( mutexBotones, mutexPantallasNormal,mutexPantallasTactil, 
+            mutexTarjetaSD, mutexJoystick, 
+            semEnsBotones, semEnsPantallasNormal, semEnsPantallasTactil,
+            semEnsJoystick, semEnsTarjetaSD,
+            semProBotones, semProPantallas, semProJoystick, semProTarjetaSD);
 
+        
         a.start();
         b.start();
         c.start();
-        //d.start();
+        d.start();
         e.start();
 
        
         
-        
-        
-//        Semaphore mutex = new Semaphore(1);
-//        Semaphore semProductor = new  Semaphore (6);
-//        Semaphore semConsumidor = new Semaphore (0);
-//        
-//        Productor g  = new Productor( mutex , semConsumidor , semProductor , "Garcia" );
-//        Consumidor f = new Consumidor( mutex, semConsumidor, semProductor, "Fernando" );
-//        g.start();
-//        f.start();
-//    public static volatile int almacenTarjetasSD = 15;
-//    public static volatile int numTarjetasSD = 0;
-//    public static int maxProTarjetasSD = 4;
-//    
-//    public static volatile int almacenJoystick = 20;
-//    public static volatile int numJoystick = 0;
-//    public static int maxProJoystick = 4;
+      
     }
 
 }

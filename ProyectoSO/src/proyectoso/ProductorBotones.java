@@ -30,16 +30,17 @@ public class ProductorBotones extends Thread {
     public void run() {
         while (true) {
             try {
-
+                if(Central.almacenBotones > 0 ){
                     this.semProBotones.acquire();
                     this.mutex.acquire();
                     Central.numBotones = Central.numBotones + 2;
+                    Central.almacenBotones = Central.almacenBotones - 2; 
                     System.out.println("El valor de botones es " + Central.numBotones);
                     this.mutex.release();
                     Thread.sleep(1000);
                     this.semEnsBotones.release(2);
-      
-                
+                }
+  
             } catch (InterruptedException ex) {
                  System.out.println("error");
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);

@@ -14,21 +14,20 @@ import java.util.logging.Logger;
  * @author LStanislao
  */
 public class Ensamblador extends Thread{
-    
-    Semaphore mutexBotones, mutexPantallas, mutexTarjetaSD, mutexJoystick, 
-            semEnsBotones, semEnsPantallas, semEnsJoystick, semEnsTarjetasSD,
-            semProBotones, semProPantallas, semProJoystick, semProTarjetaSD;
 
-    public Ensamblador(Semaphore mutexBotones, Semaphore mutexPantallas, Semaphore mutexTarjetaSD, Semaphore mutexJoystick,
-            Semaphore semEnsBotones, Semaphore semEnsPantallas, Semaphore semEnsJoystick, Semaphore semEnsTarjetasSD, 
-            Semaphore semProBotones, Semaphore semProPantallas, Semaphore semProJoystick, Semaphore semProTarjetaSD) {
-        
+    public Ensamblador(Semaphore mutexBotones, Semaphore mutexPantallasNormal, Semaphore mutexPantallasTactil, 
+            Semaphore mutexTarjetaSD, Semaphore mutexJoystick, Semaphore semEnsBotones, 
+            Semaphore semEnsPantallasNormales, Semaphore PantallasEnsTactiles, Semaphore semEnsJoystick, 
+            Semaphore semEnsTarjetasSD, Semaphore semProBotones, Semaphore semProPantallas, 
+            Semaphore semProJoystick, Semaphore semProTarjetaSD) {
         this.mutexBotones = mutexBotones;
-        this.mutexPantallas = mutexPantallas;
+        this.mutexPantallasNormal = mutexPantallasNormal;
+        this.mutexPantallasTactil = mutexPantallasTactil;
         this.mutexTarjetaSD = mutexTarjetaSD;
         this.mutexJoystick = mutexJoystick;
         this.semEnsBotones = semEnsBotones;
-        this.semEnsPantallas = semEnsPantallas;
+        this.semEnsPantallasNormal = semEnsPantallasNormales;
+        this.semEnsPantallasTactil = PantallasEnsTactiles;
         this.semEnsJoystick = semEnsJoystick;
         this.semEnsTarjetasSD = semEnsTarjetasSD;
         this.semProBotones = semProBotones;
@@ -36,6 +35,13 @@ public class Ensamblador extends Thread{
         this.semProJoystick = semProJoystick;
         this.semProTarjetaSD = semProTarjetaSD;
     }
+    
+    Semaphore mutexBotones, mutexPantallasNormal,mutexPantallasTactil, 
+            mutexTarjetaSD, mutexJoystick, 
+            semEnsBotones, semEnsPantallasNormal, semEnsPantallasTactil,
+            semEnsJoystick, semEnsTarjetasSD,
+            semProBotones, semProPantallas, semProJoystick, semProTarjetaSD;
+
 
 
     public void run(){
@@ -47,6 +53,7 @@ public class Ensamblador extends Thread{
                 this.mutexBotones.acquire();
                 
                     Central.numBotones = Central.numBotones - 5; 
+                    Central.almacenBotones= Central.numBotones + 5;
                     System.out.println("El valor de botones es " + Central.numBotones );
                 
                 this.mutexBotones.release();
@@ -73,15 +80,23 @@ public class Ensamblador extends Thread{
                 this.semProTarjetaSD.release(1);
                 
                 //Pantalla
-                this.semEnsPantallas.acquire(2);
-                this.mutexPantallas.acquire();
+                this.semEnsPantallasNormal.acquire(1);
+                this.mutexPantallasNormal.acquire();
+                   
+                    Central.numPantallasTactiles = Central.numPantallasNormales - 1;
+                    System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
                     
-                    Central.numPantallasNormales = Central.numTarjetasSD - 1;
+                this.mutexPantallasNormal.release();
+                
+                //Pantalla tactil
+                this.semEnsPantallasTactil.acquire(1);
+                this.mutexPantallasTactil.acquire();
+                    
                     Central.numPantallasTactiles = Central.numPantallasTactiles - 1;
-                    System.out.println("El valor de r es " + Central.numPantallasTactiles );
-                    System.out.println("El valor de r es " + Central.numPantallasNormales);
-                    
-                this.mutexPantallas.release();
+                    System.out.println("El valor de pantallas normales es " + Central.numPantallasTactiles );
+                                     
+                this.mutexPantallasTactil.release();
+               
                 this.semProPantallas.release(2);
                 
                 System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA PRODUCI UNA CONSOLA");
