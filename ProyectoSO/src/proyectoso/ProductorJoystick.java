@@ -18,7 +18,7 @@ public class ProductorJoystick extends Thread {
     Semaphore mutex;
     Semaphore semProJoystick;
     Semaphore semEnsJoystick;
-    boolean activo = true;
+    boolean activo;
 
     public ProductorJoystick(Semaphore mutex, Semaphore semProJoystick, Semaphore semEnsJoystick) {
         this.mutex = mutex;
@@ -28,7 +28,7 @@ public class ProductorJoystick extends Thread {
     }
 
     public void run() {
-        while (true) {
+        while (activo) {
             try {
                 //if (Central.maxAlmacenJoystick - Central.numJoystick > 0) {
                     

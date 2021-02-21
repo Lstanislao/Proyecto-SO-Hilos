@@ -18,7 +18,7 @@ public class ProductorTarjetasSD extends Thread {
     Semaphore mutex;
     Semaphore semProTarjetasSD;
     Semaphore semEnsTarjetasSD;
-    boolean activo = true;
+    boolean activo ;
 
     public ProductorTarjetasSD(Semaphore mutex, Semaphore semProTarjetasSD, Semaphore semEnsTarjetasSD) {
         this.mutex = mutex;
@@ -28,7 +28,7 @@ public class ProductorTarjetasSD extends Thread {
     }
 
     public void run() {
-        while (true) {
+        while (activo) {
             try {
                 //if (Central.maxAlmacenTarjetas - Central.numBotones > 0) {
                     this.semProTarjetasSD.acquire();

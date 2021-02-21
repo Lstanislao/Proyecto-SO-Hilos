@@ -20,7 +20,7 @@ public class ProductorPantallas extends Thread {
     Semaphore semProPantallas;
     Semaphore semEnsPantallasNormal;
     Semaphore semEnsPantallasTactil;
-    boolean activo = true;
+    boolean activo;
 
     public ProductorPantallas(
             Semaphore mutexNormal, Semaphore mutexTactil,
@@ -37,7 +37,7 @@ public class ProductorPantallas extends Thread {
     }
 
     public void run() {
-        while (true) {
+        while (activo) {
 
             try {
                 //if ( (Central.maxAlmacenPantallas - (Central.numPantallasNormales + Central.numPantallasNormales)) > 0) {

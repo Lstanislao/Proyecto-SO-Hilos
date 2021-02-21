@@ -180,7 +180,7 @@ public class ManejadorDePersonal {
     
     
     public void DespedirProPantallas() {
-    
+        System.out.println(numProPantallas+ "DESPEDI AL DE LAS PANTALLAS");
         if(numProPantallas > 0){
             
             //Disminuyo en numero de productores
