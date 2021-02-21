@@ -13,15 +13,16 @@ import java.util.logging.Logger;
  *
  * @author LStanislao
  */
-public class ProductorPantallasNormales extends Thread {
+public class ProductorPantallas extends Thread {
 
     Semaphore mutexNormal;
     Semaphore mutexTactil;
     Semaphore semProPantallas;
     Semaphore semEnsPantallasNormal;
     Semaphore semEnsPantallasTactil;
+    boolean activo = true;
 
-    public ProductorPantallasNormales(
+    public ProductorPantallas(
             Semaphore mutexNormal, Semaphore mutexTactil,
             Semaphore semProPantallasNormal, Semaphore semEnsPantallasNormal,
             Semaphore semEnsPantallasTactil) {
@@ -31,6 +32,7 @@ public class ProductorPantallasNormales extends Thread {
         this.semProPantallas = semProPantallasNormal;
         this.semEnsPantallasNormal = semEnsPantallasNormal;
         this.semEnsPantallasTactil = semEnsPantallasTactil;
+        this.activo = true;
 
     }
 
@@ -38,7 +40,7 @@ public class ProductorPantallasNormales extends Thread {
         while (true) {
 
             try {
-                if ( (Central.maxAlmacenPantallas - (Central.numPantallasNormales + Central.numPantallasNormales)) > 0) {
+                //if ( (Central.maxAlmacenPantallas - (Central.numPantallasNormales + Central.numPantallasNormales)) > 0) {
                     //Pantalla normal
                     this.semProPantallas.acquire(2);
                     this.mutexNormal.acquire();
@@ -55,7 +57,7 @@ public class ProductorPantallasNormales extends Thread {
                     this.mutexTactil.release();
                     Thread.sleep(2000);//2 dias 
                     this.semEnsPantallasTactil.release();
-                }
+                //}
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);

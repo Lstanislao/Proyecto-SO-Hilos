@@ -18,27 +18,29 @@ public class ProductorBotones extends Thread {
     Semaphore mutex;
     Semaphore semProBotones;
     Semaphore semEnsBotones;
+    boolean activo;
 
     public ProductorBotones(Semaphore mutex, Semaphore semProBotones, Semaphore semEnsBotones) {
 
         this.mutex = mutex;
         this.semProBotones = semProBotones;
         this.semEnsBotones = semEnsBotones;
+        this.activo = true;
 
     }
 
     public void run() {
-        while (true) {
+        while (activo) {
             try {
-                if(Central.maxAlmacenBotones - Central.numBotones > 0 ){
-                    this.semProBotones.acquire();
+                    this.semProBotones.acquire(2);
                     this.mutex.acquire();
                         Central.numBotones = Central.numBotones + 2;
+                        ProyectoSO.dashboard.setBotonesProducidos(Central.numBotones);
                         System.out.println("El valor de botones es " + Central.numBotones);
                     this.mutex.release();
                     Thread.sleep(1000);
                     this.semEnsBotones.release(2);
-                }
+            
   
             } catch (InterruptedException ex) {
                  System.out.println("error");

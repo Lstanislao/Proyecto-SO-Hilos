@@ -5,19 +5,30 @@
  */
 package ventanas;
 
+import javax.swing.JLabel;
+import proyectoso.Central;
+
 /**
  *
  * @author LStanislao
  */
 public class Dashboard extends javax.swing.JFrame {
 
+
+    
+    public void setBotonesProducidos (int num) {
+        BotonesProducidos.setText(Integer.toString(num));
+    }
     /**
      * Creates new form Ventana
      */
+    
     public Dashboard() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,11 +56,11 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        PantallasNormalesProducidas = new javax.swing.JLabel();
+        JoystickProducidos = new javax.swing.JLabel();
         BotonesProducidos = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        PantallasTactilesProducidas = new javax.swing.JLabel();
+        TarjetasSDProducidas = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -57,9 +68,10 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        IniciarSimulacion = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,20 +119,20 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         jLabel15.setText("JoySticks");
 
-        jLabel16.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        jLabel16.setText("0");
+        PantallasNormalesProducidas.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        PantallasNormalesProducidas.setText("0");
 
-        jLabel17.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        jLabel17.setText("0");
+        JoystickProducidos.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        JoystickProducidos.setText("0");
 
         BotonesProducidos.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         BotonesProducidos.setText("0");
 
-        jLabel20.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        jLabel20.setText("0");
+        PantallasTactilesProducidas.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        PantallasTactilesProducidas.setText("0");
 
-        jLabel21.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        jLabel21.setText("0");
+        TarjetasSDProducidas.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        TarjetasSDProducidas.setText("0");
 
         jLabel23.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         jLabel23.setText("0");
@@ -143,11 +155,11 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         jLabel22.setText("0");
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        jButton1.setText("Iniciar producción");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        IniciarSimulacion.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        IniciarSimulacion.setText("Iniciar producción");
+        IniciarSimulacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                IniciarSimulacionActionPerformed(evt);
             }
         });
 
@@ -166,6 +178,9 @@ public class Dashboard extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        jLabel18.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        jLabel18.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -189,19 +204,19 @@ public class Dashboard extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(TarjetasSDProducidas, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(PantallasTactilesProducidas, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(PantallasNormalesProducidas, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(JoystickProducidos, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(210, 210, 210)
@@ -219,20 +234,23 @@ public class Dashboard extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(82, 82, 82)
                         .addComponent(jLabel11)
-                        .addGap(48, 48, 48))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel1))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel19)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2)))
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(105, 105, 105)
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -240,10 +258,10 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton3)
-                        .addGap(16, 16, 16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(IniciarSimulacion)
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -265,7 +283,8 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel18))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -279,27 +298,27 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(jLabel17)
+                    .addComponent(JoystickProducidos)
                     .addComponent(jLabel24))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel16)
+                    .addComponent(PantallasNormalesProducidas)
                     .addComponent(jLabel25))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel20)
+                    .addComponent(PantallasTactilesProducidas)
                     .addComponent(jLabel26))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jLabel21)
+                    .addComponent(TarjetasSDProducidas)
                     .addComponent(jLabel27))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton1)
+                    .addComponent(IniciarSimulacion)
                     .addComponent(jButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -320,16 +339,19 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        BotonesProducidos.setText("1");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void IniciarSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSimulacionActionPerformed
+       Central.IniciarSimulacion();
+    }//GEN-LAST:event_IniciarSimulacionActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        PersonalDeLaFabrica a = new PersonalDeLaFabrica();
+        a.setVisible(true);
+        a.setLocationRelativeTo(null);
+        //this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -370,7 +392,11 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BotonesProducidos;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton IniciarSimulacion;
+    private javax.swing.JLabel JoystickProducidos;
+    private javax.swing.JLabel PantallasNormalesProducidas;
+    private javax.swing.JLabel PantallasTactilesProducidas;
+    private javax.swing.JLabel TarjetasSDProducidas;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -380,12 +406,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;

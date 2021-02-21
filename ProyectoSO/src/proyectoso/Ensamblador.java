@@ -49,12 +49,11 @@ public class Ensamblador extends Thread{
             try {
                 
                 //BOTONES
-                System.out.println("entro");
-                this.semEnsBotones.acquire(5);
-                System.out.println("entro2");
+                this.semEnsBotones.acquire(5); 
                 this.mutexBotones.acquire();
                     System.out.println("CONSUMI BOTONES");
-                    Central.numBotones = Central.numBotones - 5; 
+                    Central.numBotones = Central.numBotones - 5;
+                    ProyectoSO.dashboard.setBotonesProducidos(Central.numBotones);
                     System.out.println("El valor de botones es " + Central.numBotones );
                 
                 this.mutexBotones.release();
@@ -101,7 +100,7 @@ public class Ensamblador extends Thread{
                 this.semProPantallas.release(2);
                 
                 System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA PRODUCI UNA CONSOLA");
-                
+                Thread.sleep(1000);
                 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
