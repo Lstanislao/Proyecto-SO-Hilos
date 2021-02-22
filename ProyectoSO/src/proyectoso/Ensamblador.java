@@ -75,6 +75,7 @@ public class Ensamblador extends Thread{
                             System.out.println("CONSUMI JOYSTICK");
                             Central.numJoystick = Central.numJoystick -2;
                             System.out.println("El valor de joystick es " + Central.numJoystick );
+                            ProyectoSO.dashboard.setJoystickProducidos(Central.numJoystick);
                         this.mutexJoystick.release();
                         
                         //TAREJTA SD
@@ -82,6 +83,7 @@ public class Ensamblador extends Thread{
                             System.out.println("CONSUMI SD");
                             Central.numTarjetasSD = Central.numTarjetasSD -1;
                             System.out.println("El valor de tarjeta es " + Central.numTarjetasSD );
+                            ProyectoSO.dashboard.setTarjetasSDProducidas(Central.numTarjetasSD);
                         this.mutexTarjetaSD.release();
                         
                         //PANTALLA NORMAL
@@ -89,6 +91,7 @@ public class Ensamblador extends Thread{
                             System.out.println("CONSUMI pantalla normal");
                             Central.numPantallasNormales = Central.numPantallasNormales - 1;
                             System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
+                            ProyectoSO.dashboard.setPantallasNormalesProducidas(Central.numJoystick);
                         this.mutexPantallasNormal.release();
 
                         //PANTALLA TACTIL
@@ -96,6 +99,7 @@ public class Ensamblador extends Thread{
                             System.out.println("CONSUMI pantalla tactil");
                             Central.numPantallasTactiles = Central.numPantallasTactiles - 1;
                             System.out.println("El valor de pantallas normales es " + Central.numPantallasTactiles );
+                            ProyectoSO.dashboard.setPantallasTactilesProducidas(Central.numJoystick);
                         this.mutexPantallasTactil.release();
                         
                         
