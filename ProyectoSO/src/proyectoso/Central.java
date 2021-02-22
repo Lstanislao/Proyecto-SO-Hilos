@@ -11,42 +11,77 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
+import javax.swing.JOptionPane;
+import ventanas.Dashboard;
 
 public class Central {
 
+    public static Dashboard dashboard = ProyectoSO.dashboard;
     public static boolean iniciado = false;
-    public static volatile int tiempoDia = 2000;
-    public static volatile int diasDespacho = 20;
+
+    //Tiempo que dura el dia en segundos
+    public static volatile int tiempoDia = 2;
+
+    //Dias entre despachos
+    public static int diasDespacho = 20;
+
+    //Dias para proximo despacho
+    public static volatile int diasRestantes = 20;
+
+    //Consolas producidas
+    public static volatile int consolasProducidas = 0;
+
+    //Disponibilidad maxima de almacenes
     public static int maxAlmacenBotones;
     public static int maxAlmacenPantallas;
     public static int maxAlmacenTarjetas;
     public static int maxAlmacenJoystick;
+
+    //Cantidad inicial de productores
     public static int inicialProdBotones;
     public static int inicialProdPantallas;
     public static int inicialProdTarjetas;
     public static int inicialProdJoystick;
+
+    //Cantidad inicial de ensambladores
     public static int inicialEnsambladores;
+
+    //Cantidad maxima de productores
     public static int maxProdBotones;
     public static int maxProdPantallas;
     public static int maxProdTarjetas;
     public static int maxProdJoystick;
+
+    //Cantidad maxima de ensambladores
     public static int maxEnsambladores;
 
+    //Contadores de elementos
     public static volatile int numBotones = 0;
-    public static int maxProBotones = 3;
-
     public static volatile int numPantallasNormales = 0;
     public static volatile int numPantallasTactiles = 0;
-    public static int maxProPantalla = 5;
-
     public static volatile int numTarjetasSD = 0;
-    public static int maxProTarjetasSD = 4;
-
     public static volatile int numJoystick = 0;
-    public static int maxProJoystick = 4;
+
+    //Accion actual de jefe y gerente
+    public static volatile String accionJefe = "Iniciando";
+    public static volatile String accionGerente = "Iniciando";
+
+    //Duracion de produccion
+    public static volatile double diasProdBotones = 0.5;
+    public static volatile int diasProdPantallasNormales = 1;
+    public static volatile int diasProdPantallasTactiles = 2;
+    public static volatile int diasProdJoystick = 2;
+    public static volatile int diasProdTarjetasSD = 3;
+
+    //Duracion de ensamblaje
+    public static volatile int diasEnsamblaje = 1;
+
+    //Duracion acciones gerente y jefe
+    public static volatile double diasCambioJefe = 0.6;
+    public static volatile double diasDormirGerente = 0.2;
 
     public static ManejadorDePersonal manejadorDePersonal;
-    
+
     public static void CargarInfomacionInicial() {
         File miArchivo;
         String linea, itemsLinea[];
@@ -62,7 +97,6 @@ public class Central {
 
             while ((linea = bufferedReader.readLine()) != null) {
                 if (!linea.equals("")) {
-//                    linea = bufferedReader.readLine();
 
                     // Asignando valores
                     itemsLinea = linea.split(": ");
@@ -72,56 +106,72 @@ public class Central {
 
                     switch (itemsLinea[0]) {
                         case "Dia en segundos":
-                            Central.tiempoDia = numero;
+                            tiempoDia = numero * 1000;
                             break;
                         case "Dias entre despachos":
-                            Central.diasDespacho = numero;
+                            diasDespacho = numero;
                             break;
                         case "Capacidad maxima en almacen de botones":
-                            Central.maxAlmacenBotones = numero;
+                            maxAlmacenBotones = numero;
                             break;
                         case "Capacidad maxima en almacen de pantallas":
-                            Central.maxAlmacenPantallas = numero;
+                            maxAlmacenPantallas = numero;
                             break;
                         case "Capacidad maxima en almacen de joysticks":
-                            Central.maxAlmacenJoystick = numero;
+                            maxAlmacenJoystick = numero;
                             break;
                         case "Capacidad maxima en almacen de tarjetas":
-                            Central.maxAlmacenTarjetas = numero;
+                            maxAlmacenTarjetas = numero;
                             break;
                         case "Capacidad inicial de productores de botones":
-                            Central.inicialProdBotones = numero;
+                            inicialProdBotones = numero;
                             break;
                         case "Capacidad inicial de productores de pantallas":
-                            Central.inicialProdPantallas = numero;
+                            inicialProdPantallas = numero;
                             break;
                         case "Capacidad inicial de productores de joysticks":
-                            Central.inicialProdJoystick = numero;
+                            inicialProdJoystick = numero;
                             break;
                         case "Capacidad inicial de productores de tarjetas":
-                            Central.inicialProdTarjetas = numero;
+                            inicialProdTarjetas = numero;
                             break;
                         case "Capacidad inicial de ensambladores":
-                            Central.inicialEnsambladores = numero;
+                            inicialEnsambladores = numero;
                             break;
                         case "Capacidad maxima de productores de botones":
-                            Central.maxProdBotones = numero;
+                            maxProdBotones = numero;
                             break;
                         case "Capacidad maxima de productores de pantallas":
-                            Central.maxProdPantallas = numero;
+                            maxProdPantallas = numero;
                             break;
                         case "Capacidad maxima de productores de joysticks":
-                            Central.maxProdJoystick = numero;
+                            maxProdJoystick = numero;
                             break;
                         case "Capacidad maxima de productores de tarjetas":
-                            Central.maxProdTarjetas = numero;
+                            maxProdTarjetas = numero;
                             break;
                         case "Capacidad maxima de ensambladores":
-                            Central.maxEnsambladores = numero;
+                            maxEnsambladores = numero;
                             break;
                     }
                 }
             }
+
+            //Validaciones
+            if (inicialProdBotones > maxProdBotones || inicialProdBotones < 0 || maxProdBotones < 0) {
+                JOptionPane.showMessageDialog(dashboard, "Los datos ingresados de productores de botones son invalidos!");
+            } else if (inicialProdPantallas > maxProdPantallas || inicialProdPantallas < 0 || maxProdPantallas < 0) {
+                JOptionPane.showMessageDialog(dashboard, "Los datos ingresados de productores de pantallas son invalidos!");
+            } else if (inicialProdJoystick > maxProdJoystick || inicialProdJoystick < 0 || maxProdJoystick < 0) {
+                JOptionPane.showMessageDialog(dashboard, "Los datos ingresados de productores de joysticks son invalidos!");
+            } else if (inicialProdTarjetas > maxProdTarjetas || inicialProdTarjetas < 0 || maxProdTarjetas < 0) {
+                JOptionPane.showMessageDialog(dashboard, "Los datos ingresados de productores de tarjetas son invalidos!");
+            } else if (inicialEnsambladores > maxEnsambladores || inicialEnsambladores < 0 || maxEnsambladores < 0) {
+                JOptionPane.showMessageDialog(dashboard, "Los datos ingresados de ensambladores son invalidos!");
+            } else {
+                iniciado = true;
+            }
+
             bufferedReader.close();
         } catch (FileNotFoundException ex) {
             System.out.println(
@@ -132,36 +182,42 @@ public class Central {
                     "No se puede leer este archivo '"
                     + miArchivo + "'");
 
-        } catch (IndexOutOfBoundsException ex) {
+        } catch (Exception e) {
+            System.out.println("Problema en lectura del archivo '"
+                    + miArchivo + "'");
         }
     }
 
     public static void IniciarSimulacion() {
+        CargarInfomacionInicial();
 
-        Central.iniciado = true;
-        Semaphore mutexBotones = new Semaphore(1);
+        if (iniciado) {
+            Semaphore mutexTiempo = new Semaphore(1);
+            Semaphore mutexConsolas = new Semaphore(1);
 
-        System.out.println("iniciando semProBotones" + Central.maxAlmacenBotones);
+            Semaphore mutexBotones = new Semaphore(1);
 
-        Semaphore semProBotones = new Semaphore(Central.maxAlmacenBotones);
-        Semaphore semEnsBotones = new Semaphore(0);
+            System.out.println("iniciando semProBotones" + maxAlmacenBotones);
 
-        Semaphore mutexPantallasNormal = new Semaphore(1);
-        Semaphore mutexPantallasTactil = new Semaphore(1);
-        Semaphore semProPantallas = new Semaphore(Central.maxAlmacenPantallas);
-        Semaphore semEnsPantallasNormal = new Semaphore(0);
-        Semaphore semEnsPantallasTactil = new Semaphore(0);
+            Semaphore semProBotones = new Semaphore(maxAlmacenBotones);
+            Semaphore semEnsBotones = new Semaphore(0);
 
-        Semaphore mutexTarjetaSD = new Semaphore(1);
-        Semaphore mutexJoystick = new Semaphore(1);
+            Semaphore mutexPantallasNormal = new Semaphore(1);
+            Semaphore mutexPantallasTactil = new Semaphore(1);
+            Semaphore semProPantallas = new Semaphore(maxAlmacenPantallas);
+            Semaphore semEnsPantallasNormal = new Semaphore(0);
+            Semaphore semEnsPantallasTactil = new Semaphore(0);
 
-        Semaphore semEnsJoystick = new Semaphore(0);
-        Semaphore semEnsTarjetaSD = new Semaphore(0);
+            Semaphore mutexTarjetaSD = new Semaphore(1);
+            Semaphore mutexJoystick = new Semaphore(1);
 
-        Semaphore semProJoystick = new Semaphore(Central.maxAlmacenJoystick);
-        Semaphore semProTarjetaSD = new Semaphore(Central.maxAlmacenTarjetas);
+            Semaphore semEnsJoystick = new Semaphore(0);
+            Semaphore semEnsTarjetaSD = new Semaphore(0);
 
-        //ProductorBotones proBotones = new ProductorBotones(mutexBotones, semProBotones, semEnsBotones);
+            Semaphore semProJoystick = new Semaphore(maxAlmacenJoystick);
+            Semaphore semProTarjetaSD = new Semaphore(maxAlmacenTarjetas);
+
+            //ProductorBotones proBotones = new ProductorBotones(mutexBotones, semProBotones, semEnsBotones);
 //        ProductorPantallas proPantallas = new ProductorPantallas(
 //                mutexPantallasNormal, mutexPantallasTactil,
 //                semProPantallas, semEnsPantallasTactil, semEnsPantallasNormal);
@@ -169,26 +225,40 @@ public class Central {
 //        ProductorTarjetasSD proSD = new ProductorTarjetasSD(mutexTarjetaSD, semProTarjetaSD, semEnsTarjetaSD);
 //
 //        ProductorJoystick proJoystick = new ProductorJoystick(mutexJoystick, semProJoystick, semEnsJoystick);
+//        Ensamblador ensamblador = new Ensamblador(mutexBotones, mutexPantallasNormal, mutexPantallasTactil,
+//                mutexTarjetaSD, mutexJoystick, mutexConsolas,
+//                semEnsBotones, semEnsPantallasNormal, semEnsPantallasTactil,
+//                semEnsJoystick, semEnsTarjetaSD,
+//                semProBotones, semProPantallas, semProJoystick, semProTarjetaSD);
+//        dashboard.setBotonesProducidos(0);
+//        dashboard.setJoystickProducidos(0);
+//        dashboard.setPantallasNormalesProducidas(0);
+//        dashboard.setPantallasTactilesProducidas(0);
+//        dashboard.setTarjetasSDProducidas(0);
+//        ProyectoSO.dashboard.setDiasRestantes(diasRestantes);
+            manejadorDePersonal = new ManejadorDePersonal(mutexBotones, mutexPantallasNormal, mutexPantallasTactil,
+                    mutexTarjetaSD, mutexJoystick, mutexConsolas,
+                    semEnsBotones, semEnsPantallasNormal, semEnsPantallasTactil,
+                    semEnsJoystick, semEnsTarjetaSD,
+                    semProBotones, semProPantallas, semProJoystick, semProTarjetaSD);
 
-        Ensamblador ensamblador = new Ensamblador(mutexBotones, mutexPantallasNormal, mutexPantallasTactil,
-                mutexTarjetaSD, mutexJoystick,
-                semEnsBotones, semEnsPantallasNormal, semEnsPantallasTactil,
-                semEnsJoystick, semEnsTarjetaSD,
-                semProBotones, semProPantallas, semProJoystick, semProTarjetaSD);
+            Jefe jefe = new Jefe(mutexTiempo);
+            jefe.start();
 
-        manejadorDePersonal = new ManejadorDePersonal(mutexBotones, mutexPantallasNormal, mutexPantallasTactil,
-                mutexTarjetaSD, mutexJoystick,
-                semEnsBotones, semEnsPantallasNormal, semEnsPantallasTactil,
-                semEnsJoystick, semEnsTarjetaSD,
-                semProBotones, semProPantallas, semProJoystick, semProTarjetaSD);
-        
-        boolean prueba = manejadorDePersonal.ContratarProBotones();
-        manejadorDePersonal.ContratarProJoystick();
-        manejadorDePersonal.ContratarProPantallas();
-        manejadorDePersonal.ContratarProTarjetasSD();
-       
+            Gerente gerente = new Gerente(mutexTiempo, mutexConsolas);
+            gerente.start();
 
-        ensamblador.start();
+            boolean prueba = manejadorDePersonal.ContratarProBotones();
+            manejadorDePersonal.ContratarProJoystick();
+            manejadorDePersonal.ContratarProPantallas();
+            manejadorDePersonal.ContratarProTarjetasSD();
+            manejadorDePersonal.ContratarEnsamblador();
+
+        } else {
+            
+        }
+
+//        ensamblador.start();
     }
 
 }

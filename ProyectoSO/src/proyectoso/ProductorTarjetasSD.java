@@ -19,27 +19,27 @@ public class ProductorTarjetasSD extends Thread {
     Semaphore semProTarjetasSD;
     Semaphore semEnsTarjetasSD;
     boolean activo ;
+    int diasProduccion;
 
     public ProductorTarjetasSD(Semaphore mutex, Semaphore semProTarjetasSD, Semaphore semEnsTarjetasSD) {
         this.mutex = mutex;
         this.semProTarjetasSD = semProTarjetasSD;
         this.semEnsTarjetasSD = semEnsTarjetasSD;
         this.activo = true;
+        this.diasProduccion = Central.tiempoDia * Central.diasProdTarjetasSD;
     }
 
     public void run() {
         while (activo) {
             try {
-                //if (Central.maxAlmacenTarjetas - Central.numBotones > 0) {
-                    this.semProTarjetasSD.acquire();
-                    
+                this.semProTarjetasSD.acquire();
+                    Thread.sleep(this.diasProduccion);
                     this.mutex.acquire();
                         Central.numTarjetasSD++;
                         System.out.println("El valor de tarjetaSD es " + Central.numTarjetasSD);
+                        ProyectoSO.dashboard.setTarjetasSDProducidas(Central.numTarjetasSD);
                     this.mutex.release();
-                    Thread.sleep(1000);// 3 dias
-                    this.semEnsTarjetasSD.release();
-                //}
+                this.semEnsTarjetasSD.release();
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);

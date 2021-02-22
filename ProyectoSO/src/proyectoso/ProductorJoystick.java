@@ -19,27 +19,27 @@ public class ProductorJoystick extends Thread {
     Semaphore semProJoystick;
     Semaphore semEnsJoystick;
     boolean activo;
+    int diasProduccion;
 
     public ProductorJoystick(Semaphore mutex, Semaphore semProJoystick, Semaphore semEnsJoystick) {
         this.mutex = mutex;
         this.semProJoystick = semProJoystick;
         this.semEnsJoystick = semEnsJoystick;
         this.activo = true;
+        this.diasProduccion = Central.tiempoDia * Central.diasProdJoystick;
     }
 
     public void run() {
         while (activo) {
             try {
-                //if (Central.maxAlmacenJoystick - Central.numJoystick > 0) {
-                    
-                    this.semProJoystick.acquire();
+                this.semProJoystick.acquire();
+                    Thread.sleep(this.diasProduccion);
                     this.mutex.acquire();
                         Central.numJoystick++;
                         System.out.println("El valor de joystick es " + Central.numJoystick);
+                        ProyectoSO.dashboard.setJoystickProducidos(Central.numJoystick);
                     this.mutex.release();
-                    Thread.sleep(1000);//2 dias
-                    this.semEnsJoystick.release();
-                //}
+                this.semEnsJoystick.release();
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);

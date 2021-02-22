@@ -14,10 +14,20 @@ import java.util.logging.Logger;
  * @author LStanislao
  */
 public class Ensamblador extends Thread{
+    
+    Semaphore mutexBotones, mutexPantallasNormal,mutexPantallasTactil, 
+            mutexTarjetaSD, mutexJoystick, mutexConsolas,
+            semEnsBotones, semEnsPantallasNormal, semEnsPantallasTactil,
+            semEnsJoystick, semEnsTarjetasSD,
+            semProBotones, semProPantallas, semProJoystick, semProTarjetaSD;
+
+    boolean activo;
+    int tiempoEnsamblaje;
 
     public Ensamblador(Semaphore mutexBotones, Semaphore mutexPantallasNormal, Semaphore mutexPantallasTactil, 
-            Semaphore mutexTarjetaSD, Semaphore mutexJoystick, Semaphore semEnsBotones, 
-            Semaphore semEnsPantallasNormales, Semaphore PantallasEnsTactiles, Semaphore semEnsJoystick, 
+            Semaphore mutexTarjetaSD, Semaphore mutexJoystick, Semaphore mutexConsolas, 
+            Semaphore semEnsBotones,Semaphore semEnsPantallasNormales, 
+            Semaphore PantallasEnsTactiles, Semaphore semEnsJoystick, 
             Semaphore semEnsTarjetasSD, Semaphore semProBotones, Semaphore semProPantallas, 
             Semaphore semProJoystick, Semaphore semProTarjetaSD) {
         this.mutexBotones = mutexBotones;
@@ -25,6 +35,7 @@ public class Ensamblador extends Thread{
         this.mutexPantallasTactil = mutexPantallasTactil;
         this.mutexTarjetaSD = mutexTarjetaSD;
         this.mutexJoystick = mutexJoystick;
+        this.mutexConsolas = mutexConsolas;
         this.semEnsBotones = semEnsBotones;
         this.semEnsPantallasNormal = semEnsPantallasNormales;
         this.semEnsPantallasTactil = PantallasEnsTactiles;
@@ -34,73 +45,76 @@ public class Ensamblador extends Thread{
         this.semProPantallas = semProPantallas;
         this.semProJoystick = semProJoystick;
         this.semProTarjetaSD = semProTarjetaSD;
+        
+        this.activo = true;
+        this.tiempoEnsamblaje = Central.diasEnsamblaje;
     }
     
-    Semaphore mutexBotones, mutexPantallasNormal,mutexPantallasTactil, 
-            mutexTarjetaSD, mutexJoystick, 
-            semEnsBotones, semEnsPantallasNormal, semEnsPantallasTactil,
-            semEnsJoystick, semEnsTarjetasSD,
-            semProBotones, semProPantallas, semProJoystick, semProTarjetaSD;
-
-
-
     public void run(){
-        while(true){
+        while(activo){
             try {
                 
-                //BOTONES
+                //Busco todas las piezas necesarias en almacenes
                 this.semEnsBotones.acquire(5); 
-                this.mutexBotones.acquire();
-                    System.out.println("CONSUMI BOTONES");
-                    Central.numBotones = Central.numBotones - 5;
-                    ProyectoSO.dashboard.setBotonesProducidos(Central.numBotones);
-                    System.out.println("El valor de botones es " + Central.numBotones );
-                
-                this.mutexBotones.release();
-                this.semProBotones.release(5);
-                
-                //JOYSTICK
                 this.semEnsJoystick.acquire(2);
-                this.mutexJoystick.acquire();
-                    System.out.println("CONSUMI JOYSTICK");
-                    Central.numJoystick = Central.numJoystick -2;
-                    System.out.println("El valor de joystick es " + Central.numJoystick );
-                    
-                this.mutexJoystick.release();
-                this.semProJoystick.release(2);
-                
-                //TAREJTA SD
                 this.semEnsTarjetasSD.acquire(1);
-                this.mutexTarjetaSD.acquire();
-                    System.out.println("CONSUMI SD");
-                    Central.numTarjetasSD = Central.numTarjetasSD -1;
-                    System.out.println("El valor de tarjeta es " + Central.numTarjetasSD );
-                    
-                this.mutexTarjetaSD.release();
-                this.semProTarjetaSD.release(1);
-                
-                //Pantalla
                 this.semEnsPantallasNormal.acquire(1);
-                this.mutexPantallasNormal.acquire();
-                   System.out.println("CONSUMI pantalla normal");
-                    Central.numPantallasNormales = Central.numPantallasNormales - 1;
-                    System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
-                    
-                this.mutexPantallasNormal.release();
-                
-                //Pantalla tactil
                 this.semEnsPantallasTactil.acquire(1);
-                this.mutexPantallasTactil.acquire();
-                     System.out.println("CONSUMI pantalla tactil");
-                    Central.numPantallasTactiles = Central.numPantallasTactiles - 1;
-                    System.out.println("El valor de pantallas normales es " + Central.numPantallasTactiles );
-                                     
-                this.mutexPantallasTactil.release();
-               
+                
+                    if (activo) {
+                        //BOTONES
+                        this.mutexBotones.acquire();
+                            System.out.println("CONSUMI BOTONES");
+                            Central.numBotones = Central.numBotones - 5;
+                            ProyectoSO.dashboard.setBotonesProducidos(Central.numBotones);
+                            System.out.println("El valor de botones es " + Central.numBotones );
+                        this.mutexBotones.release();
+                        
+                        //JOYSTICK
+                        this.mutexJoystick.acquire();
+                            System.out.println("CONSUMI JOYSTICK");
+                            Central.numJoystick = Central.numJoystick -2;
+                            System.out.println("El valor de joystick es " + Central.numJoystick );
+                        this.mutexJoystick.release();
+                        
+                        //TAREJTA SD
+                        this.mutexTarjetaSD.acquire();
+                            System.out.println("CONSUMI SD");
+                            Central.numTarjetasSD = Central.numTarjetasSD -1;
+                            System.out.println("El valor de tarjeta es " + Central.numTarjetasSD );
+                        this.mutexTarjetaSD.release();
+                        
+                        //PANTALLA NORMAL
+                        this.mutexPantallasNormal.acquire();
+                            System.out.println("CONSUMI pantalla normal");
+                            Central.numPantallasNormales = Central.numPantallasNormales - 1;
+                            System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
+                        this.mutexPantallasNormal.release();
+
+                        //PANTALLA TACTIL
+                        this.mutexPantallasTactil.acquire();
+                            System.out.println("CONSUMI pantalla tactil");
+                            Central.numPantallasTactiles = Central.numPantallasTactiles - 1;
+                            System.out.println("El valor de pantallas normales es " + Central.numPantallasTactiles );
+                        this.mutexPantallasTactil.release();
+                        
+                        
+                    }
+                
+                //Libero espacio en almacenes
+                this.semProBotones.release(5);
+                this.semProJoystick.release(2);
+                this.semProTarjetaSD.release(1);
                 this.semProPantallas.release(2);
                 
+                Thread.sleep(Central.tiempoDia * this.tiempoEnsamblaje);
+                this.mutexConsolas.acquire();
+                System.out.println("produci consola");
+                    Central.consolasProducidas++;
+                    ProyectoSO.dashboard.setConsolasProducidas(Central.consolasProducidas);
+                this.mutexConsolas.release();
+                
                 System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA PRODUCI UNA CONSOLA");
-                Thread.sleep(1000);
                 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);

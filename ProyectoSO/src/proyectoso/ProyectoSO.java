@@ -28,11 +28,7 @@ public class ProyectoSO {
         dashboard.setVisible(true);
         
         
-        Central.CargarInfomacionInicial();
-        
-        
-        
-        Central.IniciarSimulacion();
+//        Central.IniciarSimulacion();
 
        
         
