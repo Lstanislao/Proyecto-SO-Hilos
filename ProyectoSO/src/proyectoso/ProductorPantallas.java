@@ -21,6 +21,8 @@ public class ProductorPantallas extends Thread {
     Semaphore semEnsPantallasNormal;
     Semaphore semEnsPantallasTactil;
     boolean activo;
+    int diasProduccionTactiles, diasProduccionNormales;
+    
 
     public ProductorPantallas(
             Semaphore mutexNormal, Semaphore mutexTactil,
@@ -33,31 +35,32 @@ public class ProductorPantallas extends Thread {
         this.semEnsPantallasNormal = semEnsPantallasNormal;
         this.semEnsPantallasTactil = semEnsPantallasTactil;
         this.activo = true;
-
+        this.diasProduccionTactiles = Central.tiempoDia * Central.diasProdPantallasTactiles;
+        this.diasProduccionNormales = Central.tiempoDia * Central.diasProdPantallasNormales;
     }
 
     public void run() {
         while (activo) {
 
             try {
-                //if ( (Central.maxAlmacenPantallas - (Central.numPantallasNormales + Central.numPantallasNormales)) > 0) {
-                    //Pantalla normal
-                    this.semProPantallas.acquire(2);
+                //Pantalla normal
+                this.semProPantallas.acquire(2);
+                    Thread.sleep(this.diasProduccionNormales);
                     this.mutexNormal.acquire();
                         Central.numPantallasNormales++;
                         System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
+                        ProyectoSO.dashboard.setPantallasNormalesProducidas(Central.numJoystick);
                     this.mutexNormal.release();
-                    Thread.sleep(1000);//1 dias 
                     this.semEnsPantallasNormal.release();
 
                     //Pantalla tactil
                     this.mutexTactil.acquire();
+                    Thread.sleep(this.diasProduccionTactiles);
                         Central.numPantallasTactiles++;
                         System.out.println("El valor de pantallas tactiles es " + Central.numPantallasNormales);
+                        ProyectoSO.dashboard.setPantallasTactilesProducidas(Central.numJoystick);
                     this.mutexTactil.release();
-                    Thread.sleep(2000);//2 dias 
                     this.semEnsPantallasTactil.release();
-                //}
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);

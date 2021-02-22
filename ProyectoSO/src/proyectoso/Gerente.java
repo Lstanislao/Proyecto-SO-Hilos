@@ -14,23 +14,35 @@ import java.util.logging.Logger;
  * @author orian
  */
 public class Gerente extends Thread {
-    Semaphore mutexTiempo;
-    
+    Semaphore mutexTiempo, mutexConsolas;
+    double tiempoDormir;
 
-    public Gerente(Semaphore mutexTiempo) {
+    public Gerente(Semaphore mutexTiempo, Semaphore mutexConsolas) {
         this.mutexTiempo = mutexTiempo;
+        this.mutexConsolas = mutexConsolas;
+        this.tiempoDormir = Central.tiempoDia * Central.diasDormirGerente;
     }
     
     public void run() {
         while (true) {
             try {
+                Central.accionGerente = "Esperando";
+                ProyectoSO.dashboard.setAccionGerente(Central.accionGerente);
                 this.mutexTiempo.acquire();
-//                    if (Central.diasRestantes == 0) {
-//                        //Despliegue
-//                        Central.diasRestantes = Central.diasDespacho;
-//                    }
+                    if (Central.diasRestantes == 0) {
+                        this.mutexConsolas.acquire();
+                            //Despliegue y se reinicializan contadores
+                            Central.accionGerente = "Desplegando";
+                            ProyectoSO.dashboard.setAccionGerente(Central.accionGerente);
+                            Central.consolasProducidas = 0;
+                            Central.diasRestantes = Central.diasDespacho;
+                            ProyectoSO.dashboard.setDiasRestantes(Central.diasRestantes);
+                        this.mutexConsolas.release();
+                    }
                 this.mutexTiempo.release();
-                Thread.sleep(1000);    
+                Central.accionGerente = "Durmiendo";
+                ProyectoSO.dashboard.setAccionGerente(Central.accionGerente);
+                Thread.sleep((long) this.tiempoDormir);    
                 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);

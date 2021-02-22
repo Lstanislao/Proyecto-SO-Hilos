@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class ManejadorDePersonal {
 
     Semaphore mutexBotones, mutexPantallasNormal, mutexPantallasTactil,
-            mutexTarjetaSD, mutexJoystick,
+            mutexTarjetaSD, mutexJoystick, mutexConsolas,
             semEnsBotones, semEnsPantallasNormal, semEnsPantallasTactil,
             semEnsJoystick, semEnsTarjetasSD,
             semProBotones, semProPantallas, semProJoystick, semProTarjetaSD;
@@ -32,13 +32,17 @@ public class ManejadorDePersonal {
     ProductorTarjetasSD [] ProTarjetasSDAct = new ProductorTarjetasSD [Central.maxAlmacenTarjetas];
     public int numProTarjetasSD = 0;
     
+    Ensamblador [] EnsambladoresAct = new Ensamblador [Central.maxEnsambladores];
+    public int numEnsambladores = 0;
     
-    public ManejadorDePersonal(Semaphore mutexBotones, Semaphore mutexPantallasNormal, Semaphore mutexPantallasTactil, Semaphore mutexTarjetaSD, Semaphore mutexJoystick, Semaphore semEnsBotones, Semaphore semEnsPantallasNormal, Semaphore semEnsPantallasTactil, Semaphore semEnsJoystick, Semaphore semEnsTarjetasSD, Semaphore semProBotones, Semaphore semProPantallas, Semaphore semProJoystick, Semaphore semProTarjetaSD) {
+    
+    public ManejadorDePersonal(Semaphore mutexBotones, Semaphore mutexPantallasNormal, Semaphore mutexPantallasTactil, Semaphore mutexTarjetaSD, Semaphore mutexJoystick, Semaphore mutexConsolas, Semaphore semEnsBotones, Semaphore semEnsPantallasNormal, Semaphore semEnsPantallasTactil, Semaphore semEnsJoystick, Semaphore semEnsTarjetasSD, Semaphore semProBotones, Semaphore semProPantallas, Semaphore semProJoystick, Semaphore semProTarjetaSD) {
         this.mutexBotones = mutexBotones;
         this.mutexPantallasNormal = mutexPantallasNormal;
         this.mutexPantallasTactil = mutexPantallasTactil;
         this.mutexTarjetaSD = mutexTarjetaSD;
         this.mutexJoystick = mutexJoystick;
+        this.mutexConsolas = mutexConsolas;
         this.semEnsBotones = semEnsBotones;
         this.semEnsPantallasNormal = semEnsPantallasNormal;
         this.semEnsPantallasTactil = semEnsPantallasTactil;
@@ -53,7 +57,7 @@ public class ManejadorDePersonal {
     public boolean ContratarProBotones() {
 
         System.out.println("NUMERO DE productores de botones  " + numProBotones);
-        if (numProBotones < Central.maxProBotones) {
+        if (numProBotones < Central.maxProdBotones) {
             //Intancio el hilo
             ProductorBotones proBotones = new ProductorBotones(mutexBotones, semProBotones, semEnsBotones);
             
@@ -104,7 +108,7 @@ public class ManejadorDePersonal {
     public void ContratarProJoystick() {
 
         System.out.println("NUMERO DE productores de joystic " + numProJoystick);
-        if (numProBotones < Central.maxProJoystick) {
+        if (numProBotones < Central.maxProdJoystick) {
             //Intancio el hilo
             ProductorJoystick proJoystick = new ProductorJoystick(mutexJoystick, semProJoystick, semEnsJoystick);
             
@@ -153,7 +157,7 @@ public class ManejadorDePersonal {
     public void ContratarProPantallas() {
 
         System.out.println("NUMERO DE productores de pantalla " + numProPantallas);
-        if (numProPantallas < Central.maxProPantalla) {
+        if (numProPantallas < Central.maxProdPantallas) {
             //Intancio el hilo
             ProductorPantallas proPantallas = new ProductorPantallas(
                 mutexPantallasNormal, mutexPantallasTactil,
@@ -206,7 +210,7 @@ public class ManejadorDePersonal {
     public void ContratarProTarjetasSD() {
 
         System.out.println("NUMERO DE productores de TarjetasSD " + numProTarjetasSD);
-        if (numProTarjetasSD < Central.maxProTarjetasSD) {
+        if (numProTarjetasSD < Central.maxProdTarjetas) {
             //Intancio el hilo
             ProductorTarjetasSD proTarjetasSD = new ProductorTarjetasSD( mutexTarjetaSD, semProTarjetaSD, semEnsTarjetasSD);
             
@@ -247,6 +251,58 @@ public class ManejadorDePersonal {
             
             //limpio el espacio del array del hilo que despedi
             ProTarjetasSDAct[index] = null;
+        }
+        
+    }
+    
+    public void ContratarEnsamblador() {
+
+        System.out.println("NUMERO DE ensambladores " + numEnsambladores);
+        if (numEnsambladores < Central.maxEnsambladores) {
+            //Intancio el hilo
+            Ensamblador ensamblador = new Ensamblador(mutexBotones, mutexPantallasNormal, mutexPantallasTactil,
+                mutexTarjetaSD, mutexJoystick, mutexConsolas,
+                semEnsBotones, semEnsPantallasNormal, semEnsPantallasTactil,
+                semEnsJoystick, semEnsTarjetasSD,
+                semProBotones, semProPantallas, semProJoystick, semProTarjetaSD);
+            
+            // Es el index donde voy a modificar mi array
+            int index = numEnsambladores;
+            
+            //Guardo el hilo en mi array de producotres activos
+            EnsambladoresAct[index] = ensamblador;
+            
+            //Este print se puede quitar
+            for (int i = 0; i < 3; i++) {
+                System.out.println(i);
+                System.out.println(EnsambladoresAct[i]);
+            }
+            
+            //Pongo el hilo a correr
+            ensamblador.start();
+            numEnsambladores++;
+        }
+
+    }
+    
+    public void DespedirEnsamblador() {
+    
+        if(numEnsambladores > 0){
+            
+            //Disminuyo en numero de productores
+            numEnsambladores--;
+            
+            //El index donde voy a modificar el array de productores activos
+            int index = numEnsambladores;
+            
+            System.out.println(numEnsambladores + "ESTOS SON LOS ensambladores QUE QUEDAN ");
+            
+            //Saco la instacia del hilo que voy a despedir y le pongo el active false
+            Ensamblador ensDespedido = EnsambladoresAct[index];
+            ensDespedido.activo = false;
+            
+            //limpio el espacio del array del hilo que despedi
+            EnsambladoresAct[index] = null;
         }
         
     }
