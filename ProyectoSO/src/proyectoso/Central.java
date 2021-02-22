@@ -77,8 +77,8 @@ public class Central {
     public static volatile int diasEnsamblaje = 1;
 
     //Duracion acciones gerente y jefe
-    public static volatile double diasCambioJefe = 0.6;
-    public static volatile double diasDormirGerente = 0.2;
+    public static volatile double diasCambioJefe = 0.25;
+    public static volatile double diasDormirGerente = 0.0833;
 
     public static ManejadorDePersonal manejadorDePersonal;
 
