@@ -32,6 +32,7 @@ public class ProductorTarjetasSD extends Thread {
             try {
                 //if (Central.maxAlmacenTarjetas - Central.numBotones > 0) {
                     this.semProTarjetasSD.acquire();
+                    
                     this.mutex.acquire();
                         Central.numTarjetasSD++;
                         System.out.println("El valor de tarjetaSD es " + Central.numTarjetasSD);
