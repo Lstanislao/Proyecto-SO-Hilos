@@ -190,6 +190,8 @@ public class Central {
 
     public static void IniciarSimulacion() {
         CargarInfomacionInicial();
+        
+        
 
         if (iniciado) {
             Semaphore mutexTiempo = new Semaphore(1);
@@ -229,18 +231,35 @@ public class Central {
 
             Gerente gerente = new Gerente(mutexTiempo, mutexConsolas);
             gerente.start();
-
-            boolean prueba = manejadorDePersonal.ContratarProBotones();
-            manejadorDePersonal.ContratarProJoystick();
-            manejadorDePersonal.ContratarProPantallas();
-            manejadorDePersonal.ContratarProTarjetasSD();
-            manejadorDePersonal.ContratarEnsamblador();
+            
+            
+            for (int i = 0; i < inicialProdBotones; i++) {
+                manejadorDePersonal.ContratarProBotones();
+            }
+            
+            for (int i = 0; i < inicialProdBotones; i++) {
+                manejadorDePersonal.ContratarProJoystick();
+            }
+            
+            for (int i = 0; i < inicialProdPantallas; i++) {
+                manejadorDePersonal.ContratarProPantallas();
+            }
+            
+            for (int i = 0; i < inicialProdTarjetas; i++) {
+                manejadorDePersonal.ContratarProTarjetasSD();
+            }
+            
+            for (int i = 0; i < inicialProdTarjetas; i++) {
+                manejadorDePersonal.ContratarEnsamblador();
+            }
+            
+            
+            
 
         } else {
             
         }
 
-//        ensamblador.start();
     }
 
 }

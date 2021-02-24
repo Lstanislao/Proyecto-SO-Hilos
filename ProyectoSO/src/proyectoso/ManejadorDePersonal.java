@@ -54,11 +54,10 @@ public class ManejadorDePersonal {
         this.semProTarjetaSD = semProTarjetaSD;
     }
 
-    public boolean ContratarProBotones() {
+    public void ContratarProBotones() {
 
-        System.out.println("NUMERO DE productores de botones  " + numProBotones);
         if (numProBotones < Central.maxProdBotones) {
-            //Intancio el hilo
+            //Instancio el hilo
             ProductorBotones proBotones = new ProductorBotones(mutexBotones, semProBotones, semEnsBotones);
             
             // Es el index donde voy a modificar mi array
@@ -73,13 +72,15 @@ public class ManejadorDePersonal {
                 System.out.println(ProBotonesAct[i]);
             }
             
+            
             //Pongo el hilo a correr
             proBotones.start();
             numProBotones++;
-            return true;
+            ProyectoSO.dashboard.setProBotones(numProBotones);
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede contratar más de botones, excede el máximo "+ Central.maxProdBotones);
         }
-        JOptionPane.showMessageDialog(null, "No se puede contratar mas , excede el maximo");
-        return false;
+        
     }
     
     public void DespedirProBotones() {
@@ -98,17 +99,22 @@ public class ManejadorDePersonal {
             ProductorBotones proDespedido = ProBotonesAct[index];
             proDespedido.activo = false;
             
+            ProyectoSO.dashboard.setProBotones(numProBotones);
             //limpio el espacio del array del hilo que despedi
             ProBotonesAct[index] = null;
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede despedir mas productores de botones actualmente hay 0,"
+                    + " y necesitamos seguir produciendo consolas :(");
         }
         
     }
     
     
     public void ContratarProJoystick() {
-
+        
         System.out.println("NUMERO DE productores de joystic " + numProJoystick);
-        if (numProBotones < Central.maxProdJoystick) {
+        if (numProJoystick < Central.maxProdJoystick) {
             //Intancio el hilo
             ProductorJoystick proJoystick = new ProductorJoystick(mutexJoystick, semProJoystick, semEnsJoystick);
             
@@ -127,6 +133,10 @@ public class ManejadorDePersonal {
             //Pongo el hilo a correr
             proJoystick.start();
             numProJoystick++;
+            ProyectoSO.dashboard.setProJoystick(numProJoystick);
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede contratar más productores de joystick, excede el máximo: " 
+                    + Central.maxProdJoystick);
         }
 
     }
@@ -146,9 +156,14 @@ public class ManejadorDePersonal {
             //Saco la instacia del hilo que voy a despedir y le pongo el active false
             ProductorJoystick proDespedido = ProJoystickAct[index];
             proDespedido.activo = false;
+            ProyectoSO.dashboard.setProJoystick(numProJoystick);
             
             //limpio el espacio del array del hilo que despedi
             ProJoystickAct[index] = null;
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede despedir mas productores de botones actualmente hay 0,"
+                    + " y necesitamos seguir produciendo consolas :(");
         }
         
     }
@@ -178,6 +193,10 @@ public class ManejadorDePersonal {
             //Pongo el hilo a correr
             proPantallas.start();
             numProPantallas++;
+            ProyectoSO.dashboard.setProPantallas(numProPantallas);
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede contratar más productores de pantallas, excede el máximo: " 
+                    + Central.maxProdPantallas);
         }
 
     }
@@ -192,7 +211,7 @@ public class ManejadorDePersonal {
             
             //El index donde voy a modificar el array de productores activos
             int index = numProPantallas;
-            
+            ProyectoSO.dashboard.setProPantallas(numProPantallas);
             System.out.println(numProPantallas+ "ESTOS SON LOS PRODUCTORES DE pantallas QUE QUEDAN ");
             
             //Saco la instacia del hilo que voy a despedir y le pongo el active false
@@ -201,6 +220,9 @@ public class ManejadorDePersonal {
             
             //limpio el espacio del array del hilo que despedi
             ProPantallasAct[index] = null;
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede despedir mas productores de pantallas actualmente hay 0,"
+                    + " y necesitamos seguir produciendo consolas :(");
         }
         
     }
@@ -229,6 +251,10 @@ public class ManejadorDePersonal {
             //Pongo el hilo a correr
             proTarjetasSD.start();
             numProTarjetasSD++;
+            ProyectoSO.dashboard.setProTarjetasSD(numProTarjetasSD);
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede contratar más productores de tarjetas, excede el máximo: " 
+                    + Central.maxProdPantallas);
         }
 
     }
@@ -248,9 +274,13 @@ public class ManejadorDePersonal {
             //Saco la instacia del hilo que voy a despedir y le pongo el active false
             ProductorTarjetasSD proDespedido = ProTarjetasSDAct[index];
             proDespedido.activo = false;
+            ProyectoSO.dashboard.setProTarjetasSD(numProTarjetasSD);
             
             //limpio el espacio del array del hilo que despedi
             ProTarjetasSDAct[index] = null;
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede despedir más productores de lectores de tarejta SD actualmente hay 0,"
+                    + " y necesitamos seguir produciendo consolas :(");
         }
         
     }
@@ -281,6 +311,10 @@ public class ManejadorDePersonal {
             //Pongo el hilo a correr
             ensamblador.start();
             numEnsambladores++;
+            ProyectoSO.dashboard.setEnsamblador(numEnsambladores);
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede contratar más ensambladores, excede el máximo: " 
+                    + Central.maxEnsambladores);
         }
 
     }
@@ -300,9 +334,13 @@ public class ManejadorDePersonal {
             //Saco la instacia del hilo que voy a despedir y le pongo el active false
             Ensamblador ensDespedido = EnsambladoresAct[index];
             ensDespedido.activo = false;
+            ProyectoSO.dashboard.setEnsamblador(numEnsambladores);
             
             //limpio el espacio del array del hilo que despedi
             EnsambladoresAct[index] = null;
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede despedir más emsambladores actualmente hay 0,"
+                    + " y necesitamos seguir produciendo consolas :(");
         }
         
     }
