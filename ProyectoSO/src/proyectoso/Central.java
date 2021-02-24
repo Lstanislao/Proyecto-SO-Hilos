@@ -20,13 +20,13 @@ public class Central {
     public static boolean iniciado = false;
 
     //Tiempo que dura el dia en segundos
-    public static volatile int tiempoDia = 2;
+    public static volatile int tiempoDia;
 
     //Dias entre despachos
-    public static int diasDespacho = 20;
+    public static int diasDespacho;
 
     //Dias para proximo despacho
-    public static volatile int diasRestantes = 20;
+    public static volatile int diasRestantes;
 
     //Consolas producidas
     public static volatile int consolasProducidas = 0;
@@ -110,6 +110,7 @@ public class Central {
                             break;
                         case "Dias entre despachos":
                             diasDespacho = numero;
+                            diasRestantes = numero;
                             break;
                         case "Capacidad maxima en almacen de botones":
                             maxAlmacenBotones = numero;
