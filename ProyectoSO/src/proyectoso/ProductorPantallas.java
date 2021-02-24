@@ -63,7 +63,7 @@ public class ProductorPantallas extends Thread {
                     this.semEnsPantallasTactil.release();
 
             } catch (InterruptedException ex) {
-                Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Fallo en el productor de Pantallas "+ ex);
             }
         }
 

@@ -45,7 +45,7 @@ public class Gerente extends Thread {
                 Thread.sleep((long) this.tiempoDormir);    
                 
             } catch (InterruptedException ex) {
-                Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Fallo en el Geretnte "+ex);
             }
         }
     

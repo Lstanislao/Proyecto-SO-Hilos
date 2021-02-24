@@ -41,7 +41,7 @@ public class Jefe extends Thread {
                 Thread.sleep((long) (Central.tiempoDia - this.tiempoCambio));    
                 
             } catch (InterruptedException ex) {
-                Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Fallo en el Jefe "+ ex);
             }
         }
     
