@@ -42,7 +42,7 @@ public class ProductorJoystick extends Thread {
                 this.semEnsJoystick.release();
 
             } catch (InterruptedException ex) {
-                Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Fallo en el productor de Joystick "+ ex);   
             }
         }
 

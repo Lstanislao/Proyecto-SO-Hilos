@@ -6,6 +6,7 @@
 package ventanas;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import proyectoso.Central;
 
 /**
@@ -15,6 +16,7 @@ import proyectoso.Central;
 public class Dashboard extends javax.swing.JFrame {
 
 
+    
     
     public void setBotonesProducidos (int num) {
         BotonesProducidos.setText(Integer.toString(num));
@@ -52,14 +54,38 @@ public class Dashboard extends javax.swing.JFrame {
         DiasRestantes.setText(Integer.toString(num));
     }
     
+    public void setProBotones (int num) {
+        ProBotones.setText(Integer.toString(num));
+    }
+    
+    public void setProTarjetasSD(int num) {
+        ProTarjetasSD.setText(Integer.toString(num));
+    }
+    
+    public void setProPantallas(int num) {
+        ProPantallas.setText(Integer.toString(num));
+    }
+    
+    public void setProJoystick(int num) {
+        ProJoystick.setText(Integer.toString(num));
+    }
+    
+    public void setEnsamblador(int num) {
+        Ensambladores.setText(Integer.toString(num));
+    }
+    
+    
+    
+    
     /**
      * Creates new form Ventana
      */
     
     public Dashboard() {
-        Central.IniciarSimulacion();
+        //Central.IniciarSimulacion();
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
     
 
@@ -75,143 +101,132 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         PantallasNormalesProducidas = new javax.swing.JLabel();
         JoystickProducidos = new javax.swing.JLabel();
         BotonesProducidos = new javax.swing.JLabel();
         PantallasTactilesProducidas = new javax.swing.JLabel();
         TarjetasSDProducidas = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         DiasRestantes = new javax.swing.JLabel();
         IniciarSimulacion = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         ConsolasProducidas = new javax.swing.JLabel();
         AccionJefe = new javax.swing.JTextField();
         AccionGerente = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel16 = new javax.swing.JLabel();
+        ProBotones = new javax.swing.JTextField();
+        DespedirProBotones = new javax.swing.JButton();
+        ContratarProBotones = new javax.swing.JButton();
+        DespedirProJoystick = new javax.swing.JButton();
+        ProJoystick = new javax.swing.JTextField();
+        ContratarProJoystick = new javax.swing.JButton();
+        ContratarProTarjetasSD = new javax.swing.JButton();
+        ProTarjetasSD = new javax.swing.JTextField();
+        ContraProTarjetasSD = new javax.swing.JButton();
+        ProPantallas = new javax.swing.JTextField();
+        DespedirProPantallas = new javax.swing.JButton();
+        ContratarProPantallas = new javax.swing.JButton();
+        DespedirEnsamblador = new javax.swing.JButton();
+        Ensambladores = new javax.swing.JTextField();
+        ContratarEnsamblador = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Yu Gothic Medium", 0, 18)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(202, 233, 255));
+        jPanel1.setForeground(new java.awt.Color(2, 62, 125));
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 40, 85));
         jLabel1.setText("Fábrica Nintendo New 15SD XL");
 
-        jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        jLabel2.setText("Duración de los días");
-
-        jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 40, 85));
         jLabel3.setText("Estatus de la línea de producción: ");
 
-        jLabel4.setText("Segundos");
-
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(2, 62, 125));
         jLabel5.setText("Jefe: ");
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(2, 62, 125));
         jLabel6.setText("Gerente:");
 
-        jLabel7.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        jLabel7.setText("Partes de la consola");
+        jLabel7.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 40, 85));
+        jLabel7.setText("Pieza");
 
-        jLabel8.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        jLabel8.setText("Producidas");
-
-        jLabel9.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        jLabel9.setText("Espacio en el almacen");
+        jLabel8.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 40, 85));
+        jLabel8.setText("Productores");
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(2, 62, 125));
         jLabel10.setText("Botones");
 
         jLabel11.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(2, 62, 125));
         jLabel11.setText("Consolas producidas:");
 
         jLabel12.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(2, 62, 125));
         jLabel12.setText("Pantallas ");
 
         jLabel13.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(2, 62, 125));
         jLabel13.setText("Pantallas tactiles");
 
-        jLabel14.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        jLabel14.setText("Lectores de SD");
-
         jLabel15.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(2, 62, 125));
         jLabel15.setText("JoySticks");
 
         PantallasNormalesProducidas.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        PantallasNormalesProducidas.setForeground(new java.awt.Color(2, 62, 125));
         PantallasNormalesProducidas.setText("0");
 
         JoystickProducidos.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        JoystickProducidos.setForeground(new java.awt.Color(2, 62, 125));
         JoystickProducidos.setText("0");
 
         BotonesProducidos.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        BotonesProducidos.setForeground(new java.awt.Color(2, 62, 125));
         BotonesProducidos.setText("0");
 
         PantallasTactilesProducidas.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        PantallasTactilesProducidas.setForeground(new java.awt.Color(2, 62, 125));
         PantallasTactilesProducidas.setText("0");
 
         TarjetasSDProducidas.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        TarjetasSDProducidas.setForeground(new java.awt.Color(2, 62, 125));
         TarjetasSDProducidas.setText("0");
 
-        jLabel23.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        jLabel23.setText("0");
-
-        jLabel24.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        jLabel24.setText("0");
-
-        jLabel25.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        jLabel25.setText("0");
-
-        jLabel26.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        jLabel26.setText("0");
-
-        jLabel27.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        jLabel27.setText("0");
-
-        jLabel19.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        jLabel19.setBackground(new java.awt.Color(2, 62, 125));
+        jLabel19.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 40, 85));
         jLabel19.setText("Días restantes para el despligue:");
 
         DiasRestantes.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        DiasRestantes.setForeground(new java.awt.Color(2, 62, 125));
         DiasRestantes.setText("0");
 
-        IniciarSimulacion.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        IniciarSimulacion.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        IniciarSimulacion.setForeground(new java.awt.Color(0, 40, 85));
         IniciarSimulacion.setText("Iniciar producción");
         IniciarSimulacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IniciarSimulacionActionPerformed(evt);
-            }
-        });
-
-        jButton2.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        jButton2.setText("Detener Producción");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        jButton3.setText("Administrar personal");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
             }
         });
 
@@ -222,151 +237,308 @@ public class Dashboard extends javax.swing.JFrame {
 
         AccionGerente.setText("Iniciando");
 
+        jLabel9.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 40, 85));
+        jLabel9.setText("Ensambladores:");
+
+        jSeparator2.setForeground(new java.awt.Color(0, 40, 85));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jSeparator4.setForeground(new java.awt.Color(2, 62, 125));
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jLabel16.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(2, 62, 125));
+        jLabel16.setText("Lectores de Tarjeta");
+
+        DespedirProBotones.setBackground(new java.awt.Color(0, 40, 85));
+        DespedirProBotones.setForeground(new java.awt.Color(255, 255, 255));
+        DespedirProBotones.setText("-");
+        DespedirProBotones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DespedirProBotonesActionPerformed(evt);
+            }
+        });
+
+        ContratarProBotones.setBackground(new java.awt.Color(0, 40, 85));
+        ContratarProBotones.setForeground(new java.awt.Color(255, 255, 255));
+        ContratarProBotones.setText("+");
+        ContratarProBotones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContratarProBotonesActionPerformed(evt);
+            }
+        });
+
+        DespedirProJoystick.setBackground(new java.awt.Color(0, 40, 85));
+        DespedirProJoystick.setForeground(new java.awt.Color(255, 255, 255));
+        DespedirProJoystick.setText("-");
+        DespedirProJoystick.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DespedirProJoystickActionPerformed(evt);
+            }
+        });
+
+        ContratarProJoystick.setBackground(new java.awt.Color(0, 40, 85));
+        ContratarProJoystick.setForeground(new java.awt.Color(255, 255, 255));
+        ContratarProJoystick.setText("+");
+        ContratarProJoystick.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContratarProJoystickActionPerformed(evt);
+            }
+        });
+
+        ContratarProTarjetasSD.setBackground(new java.awt.Color(0, 40, 85));
+        ContratarProTarjetasSD.setForeground(new java.awt.Color(255, 255, 255));
+        ContratarProTarjetasSD.setText("-");
+        ContratarProTarjetasSD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContratarProTarjetasSDActionPerformed(evt);
+            }
+        });
+
+        ContraProTarjetasSD.setBackground(new java.awt.Color(0, 40, 85));
+        ContraProTarjetasSD.setForeground(new java.awt.Color(255, 255, 255));
+        ContraProTarjetasSD.setText("+");
+        ContraProTarjetasSD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContraProTarjetasSDActionPerformed(evt);
+            }
+        });
+
+        ProPantallas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProPantallasActionPerformed(evt);
+            }
+        });
+
+        DespedirProPantallas.setBackground(new java.awt.Color(0, 40, 85));
+        DespedirProPantallas.setForeground(new java.awt.Color(255, 255, 255));
+        DespedirProPantallas.setText("-");
+        DespedirProPantallas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DespedirProPantallasActionPerformed(evt);
+            }
+        });
+
+        ContratarProPantallas.setBackground(new java.awt.Color(0, 40, 85));
+        ContratarProPantallas.setForeground(new java.awt.Color(255, 255, 255));
+        ContratarProPantallas.setText("+");
+        ContratarProPantallas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContratarProPantallasActionPerformed(evt);
+            }
+        });
+
+        DespedirEnsamblador.setBackground(new java.awt.Color(0, 40, 85));
+        DespedirEnsamblador.setForeground(new java.awt.Color(255, 255, 255));
+        DespedirEnsamblador.setText("-");
+        DespedirEnsamblador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DespedirEnsambladorActionPerformed(evt);
+            }
+        });
+
+        ContratarEnsamblador.setBackground(new java.awt.Color(0, 40, 85));
+        ContratarEnsamblador.setForeground(new java.awt.Color(255, 255, 255));
+        ContratarEnsamblador.setText("+");
+        ContratarEnsamblador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContratarEnsambladorActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 40, 85));
+        jLabel14.setText("Almacen");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(89, 89, 89)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
                         .addComponent(jLabel9)
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(TarjetasSDProducidas, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(PantallasTactilesProducidas, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(PantallasNormalesProducidas, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JoystickProducidos, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(210, 210, 210)
-                                .addComponent(BotonesProducidos, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(74, 74, 74))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel5)
+                        .addGap(17, 17, 17)
+                        .addComponent(DespedirEnsamblador, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(AccionJefe)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addGap(12, 12, 12)
-                        .addComponent(AccionGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ConsolasProducidas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Ensambladores, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(ContratarEnsamblador))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(DiasRestantes, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(105, 105, 105)
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(15, 15, 15)
+                                .addComponent(DiasRestantes, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3))))
+                .addGap(144, 144, 144))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(32, 32, 32)
+                    .addComponent(jLabel5)
+                    .addGap(10, 10, 10)
+                    .addComponent(AccionJefe, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6)
+                    .addGap(12, 12, 12)
+                    .addComponent(AccionGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(31, 31, 31)
+                    .addComponent(jLabel11)
+                    .addGap(6, 6, 6)
+                    .addComponent(ConsolasProducidas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(10, 10, 10)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addComponent(jLabel7))
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel15)
+                        .addComponent(jLabel16)
+                        .addComponent(jLabel12)
+                        .addComponent(jLabel13))
+                    .addGap(49, 49, 49)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(56, 56, 56)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel14)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(30, 30, 30)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(BotonesProducidos, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JoystickProducidos, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TarjetasSDProducidas, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(PantallasNormalesProducidas, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(PantallasTactilesProducidas, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGap(59, 59, 59)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(14, 14, 14)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(30, 30, 30)
+                            .addComponent(jLabel8))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(DespedirProBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(ProBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(ContratarProBotones))
                         .addComponent(IniciarSimulacion)
-                        .addContainerGap())))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(DespedirProJoystick, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(ProJoystick, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(ContratarProJoystick, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(DespedirProPantallas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(ProPantallas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(ContratarProPantallas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(ContratarProTarjetasSD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(ProTarjetasSD, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(ContraProTarjetasSD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel19)
-                        .addComponent(DiasRestantes)))
-                .addGap(26, 26, 26)
+                    .addComponent(jLabel19)
+                    .addComponent(DiasRestantes))
+                .addGap(23, 23, 23)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(ConsolasProducidas)
-                    .addComponent(AccionJefe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AccionGerente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(BotonesProducidos)
-                    .addComponent(jLabel23))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(JoystickProducidos)
-                    .addComponent(jLabel24))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(PantallasNormalesProducidas)
-                    .addComponent(jLabel25))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(PantallasTactilesProducidas)
-                    .addComponent(jLabel26))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(TarjetasSDProducidas)
-                    .addComponent(jLabel27))
-                .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(IniciarSimulacion)
-                    .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel5)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(3, 3, 3)
+                            .addComponent(AccionJefe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(ConsolasProducidas)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(3, 3, 3)
+                            .addComponent(AccionGerente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DespedirEnsamblador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ensambladores, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ContratarEnsamblador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel10)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel15)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel16)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel12)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel13))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addGap(15, 15, 15)
+                        .addComponent(BotonesProducidos)
+                        .addGap(24, 24, 24)
+                        .addComponent(JoystickProducidos)
+                        .addGap(24, 24, 24)
+                        .addComponent(TarjetasSDProducidas)
+                        .addGap(24, 24, 24)
+                        .addComponent(PantallasNormalesProducidas)
+                        .addGap(24, 24, 24)
+                        .addComponent(PantallasTactilesProducidas))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DespedirProBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ProBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ContratarProBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DespedirProJoystick, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ProJoystick, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ContratarProJoystick, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ContratarProTarjetasSD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ProTarjetasSD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ContraProTarjetasSD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DespedirProPantallas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ProPantallas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ContratarProPantallas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(IniciarSimulacion)
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -377,28 +549,107 @@ public class Dashboard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void IniciarSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSimulacionActionPerformed
-       Central.IniciarSimulacion();
+
+        Central.IniciarSimulacion();
     }//GEN-LAST:event_IniciarSimulacionActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void ContratarProBotonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContratarProBotonesActionPerformed
+        if(Central.iniciado){
+            Central.manejadorDePersonal.ContratarProBotones();
+        }else {
+        JOptionPane.showMessageDialog(ProBotones, "Por favor inicie la simulación primero");
+        }
+        
+    }//GEN-LAST:event_ContratarProBotonesActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        PersonalDeLaFabrica a = new PersonalDeLaFabrica();
-        a.setVisible(true);
-        a.setLocationRelativeTo(null);
-        //this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void DespedirProBotonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DespedirProBotonesActionPerformed
+        if(Central.iniciado){
+            Central.manejadorDePersonal.DespedirProBotones();
+        }else {
+        JOptionPane.showMessageDialog(ProBotones, "Por favor inicie la simulación primero");
+        }
+        
+    }//GEN-LAST:event_DespedirProBotonesActionPerformed
+
+    private void DespedirProJoystickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DespedirProJoystickActionPerformed
+        if(Central.iniciado){
+             Central.manejadorDePersonal.DespedirProJoystick();
+        }else {
+        JOptionPane.showMessageDialog(ProBotones, "Por favor inicie la simulación primero");
+        }
+       
+    }//GEN-LAST:event_DespedirProJoystickActionPerformed
+
+    private void ContratarProJoystickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContratarProJoystickActionPerformed
+        if(Central.iniciado){
+            Central.manejadorDePersonal.ContratarProJoystick();
+        }else {
+        JOptionPane.showMessageDialog(ProBotones, "Por favor inicie la simulación primero");
+        }
+        
+    }//GEN-LAST:event_ContratarProJoystickActionPerformed
+
+    private void ContratarProTarjetasSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContratarProTarjetasSDActionPerformed
+        if(Central.iniciado){
+            Central.manejadorDePersonal.DespedirProTarjetasSD();
+            
+        }else {
+        JOptionPane.showMessageDialog(ProBotones, "Por favor inicie la simulación primero");
+        }    
+    }//GEN-LAST:event_ContratarProTarjetasSDActionPerformed
+
+    private void ContraProTarjetasSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraProTarjetasSDActionPerformed
+        if(Central.iniciado){
+            Central.manejadorDePersonal.ContratarProTarjetasSD();
+        }else {
+        JOptionPane.showMessageDialog(ProBotones, "Por favor inicie la simulación primero");
+        }   
+    }//GEN-LAST:event_ContraProTarjetasSDActionPerformed
+
+    private void DespedirProPantallasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DespedirProPantallasActionPerformed
+        if(Central.iniciado){
+            Central.manejadorDePersonal.DespedirProPantallas();
+        }else {
+        JOptionPane.showMessageDialog(ProBotones, "Por favor inicie la simulación primero");
+        }   
+        
+    }//GEN-LAST:event_DespedirProPantallasActionPerformed
+
+    private void ContratarProPantallasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContratarProPantallasActionPerformed
+        if(Central.iniciado){
+            Central.manejadorDePersonal.ContratarProPantallas();
+        }else {
+        JOptionPane.showMessageDialog(ProBotones, "Por favor inicie la simulación primero");
+        }   
+        
+    }//GEN-LAST:event_ContratarProPantallasActionPerformed
+
+    private void ProPantallasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProPantallasActionPerformed
+        
+    }//GEN-LAST:event_ProPantallasActionPerformed
+
+    private void DespedirEnsambladorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DespedirEnsambladorActionPerformed
+        if(Central.iniciado){
+            Central.manejadorDePersonal.DespedirEnsamblador();
+        }else {
+        JOptionPane.showMessageDialog(ProBotones, "Por favor inicie la simulación primero");
+        } 
+    }//GEN-LAST:event_DespedirEnsambladorActionPerformed
+
+    private void ContratarEnsambladorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContratarEnsambladorActionPerformed
+        if(Central.iniciado){
+            Central.manejadorDePersonal.ContratarEnsamblador();
+        }else {
+        JOptionPane.showMessageDialog(ProBotones, "Por favor inicie la simulación primero");
+        } 
+    }//GEN-LAST:event_ContratarEnsambladorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -441,14 +692,27 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField AccionJefe;
     private javax.swing.JLabel BotonesProducidos;
     private javax.swing.JLabel ConsolasProducidas;
+    private javax.swing.JButton ContraProTarjetasSD;
+    private javax.swing.JButton ContratarEnsamblador;
+    private javax.swing.JButton ContratarProBotones;
+    private javax.swing.JButton ContratarProJoystick;
+    private javax.swing.JButton ContratarProPantallas;
+    private javax.swing.JButton ContratarProTarjetasSD;
+    private javax.swing.JButton DespedirEnsamblador;
+    private javax.swing.JButton DespedirProBotones;
+    private javax.swing.JButton DespedirProJoystick;
+    private javax.swing.JButton DespedirProPantallas;
     private javax.swing.JLabel DiasRestantes;
+    private javax.swing.JTextField Ensambladores;
     private javax.swing.JButton IniciarSimulacion;
     private javax.swing.JLabel JoystickProducidos;
     private javax.swing.JLabel PantallasNormalesProducidas;
     private javax.swing.JLabel PantallasTactilesProducidas;
+    private javax.swing.JTextField ProBotones;
+    private javax.swing.JTextField ProJoystick;
+    private javax.swing.JTextField ProPantallas;
+    private javax.swing.JTextField ProTarjetasSD;
     private javax.swing.JLabel TarjetasSDProducidas;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -456,21 +720,16 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator4;
     // End of variables declaration//GEN-END:variables
 }

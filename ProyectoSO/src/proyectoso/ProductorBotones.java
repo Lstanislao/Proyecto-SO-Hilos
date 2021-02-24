@@ -45,7 +45,7 @@ public class ProductorBotones extends Thread {
   
             } catch (InterruptedException ex) {
                  System.out.println("error");
-                Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
+               System.out.println("Fallo en el productor de Botones"+ ex);
             }
         }
 

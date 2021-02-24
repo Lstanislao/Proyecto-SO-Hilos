@@ -214,12 +214,7 @@ public class PersonalDeLaFabrica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ContratarProBotonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContratarProBotonesActionPerformed
-        if (Central.manejadorDePersonal.ContratarProBotones()){
-            int num = Integer.parseInt(ProductoresBotones.getText());
-            JOptionPane.showMessageDialog(rootPane, num);
-            num=num+1;
-            ProductoresBotones.setText(Integer.toBinaryString(num));
-    }
+
     }//GEN-LAST:event_ContratarProBotonesActionPerformed
 
     private void DespedirProBotonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DespedirProBotonesActionPerformed

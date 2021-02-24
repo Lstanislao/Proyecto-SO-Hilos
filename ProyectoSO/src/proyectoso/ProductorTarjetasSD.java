@@ -42,7 +42,7 @@ public class ProductorTarjetasSD extends Thread {
                 this.semEnsTarjetasSD.release();
 
             } catch (InterruptedException ex) {
-                Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Fallo en el productor de Trajetad SD "+ ex);
             }
         }
 
