@@ -19,7 +19,7 @@ public class ProductorBotones extends Thread {
     Semaphore semProBotones;
     Semaphore semEnsBotones;
     boolean activo;
-    double diasProduccion;
+    int diasProduccion;
 
     public ProductorBotones(Semaphore mutex, Semaphore semProBotones, Semaphore semEnsBotones) {
 
@@ -35,7 +35,7 @@ public class ProductorBotones extends Thread {
         while (activo) {
             try {
                 this.semProBotones.acquire();
-                    Thread.sleep((long) this.diasProduccion);
+                    Thread.sleep(this.diasProduccion);
                     this.mutex.acquire();
                         Central.numBotones++;
                         ProyectoSO.dashboard.setBotonesProducidos(Central.numBotones);

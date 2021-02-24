@@ -1,4 +1,4 @@
-Dia en segundos: 5
+Dia en segundos: 24
 Dias entre despachos: 10
 Capacidad maxima en almacen de botones: 45
 Capacidad maxima en almacen de pantallas: 40
@@ -7,7 +7,7 @@ Capacidad maxima en almacen de tarjetas: 15
 Capacidad inicial de productores de botones: 1
 Capacidad inicial de productores de pantallas: 1
 Capacidad inicial de productores de joysticks: 1
-Capacidad inicial de productores de tarjetas: 1
+Capacidad inicial de productores de tarjetas: 2
 Capacidad inicial de ensambladores: 1
 Capacidad maxima de productores de botones: 3
 Capacidad maxima de productores de pantallas: 5

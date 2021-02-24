@@ -67,18 +67,18 @@ public class Central {
     public static volatile String accionGerente = "Iniciando";
 
     //Duracion de produccion
-    public static volatile double diasProdBotones = 0.5;
-    public static volatile int diasProdPantallasNormales = 1;
-    public static volatile int diasProdPantallasTactiles = 2;
-    public static volatile int diasProdJoystick = 2;
-    public static volatile int diasProdTarjetasSD = 3;
+    public static volatile int diasProdBotones = 500;
+    public static volatile int diasProdPantallasNormales = 1000;
+    public static volatile int diasProdPantallasTactiles = 2000;
+    public static volatile int diasProdJoystick = 2000;
+    public static volatile int diasProdTarjetasSD = 3000;
 
     //Duracion de ensamblaje
-    public static volatile int diasEnsamblaje = 1;
+    public static volatile int diasEnsamblaje = 1000;
 
     //Duracion acciones gerente y jefe
-    public static volatile double diasCambioJefe = 0.25;
-    public static volatile double diasDormirGerente = 0.0833;
+    public static volatile int diasCambioJefe = 250;
+    public static volatile int diasDormirGerente = 83;
 
     public static ManejadorDePersonal manejadorDePersonal;
 
@@ -106,7 +106,7 @@ public class Central {
 
                     switch (itemsLinea[0]) {
                         case "Dia en segundos":
-                            tiempoDia = numero * 1000;
+                            tiempoDia = numero;
                             break;
                         case "Dias entre despachos":
                             diasDespacho = numero;
@@ -226,6 +226,8 @@ public class Central {
                     semEnsJoystick, semEnsTarjetaSD,
                     semProBotones, semProPantallas, semProJoystick, semProTarjetaSD);
 
+            dashboard.setDiasRestantes(Central.diasRestantes);
+            
             Jefe jefe = new Jefe(mutexTiempo);
             jefe.start();
 

@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class Jefe extends Thread {
     Semaphore mutexTiempo;
-    double tiempoCambio;
+    int tiempoCambio;
 
     public Jefe(Semaphore mutexTiempo) {
         this.mutexTiempo = mutexTiempo;
@@ -31,14 +31,14 @@ public class Jefe extends Thread {
                 System.out.println("Cambiando dia");
                     Central.accionJefe = "Cambiando dia";
                     ProyectoSO.dashboard.setAccionJefe(Central.accionJefe);
-                    Thread.sleep((long) tiempoCambio);
+                    Thread.sleep(tiempoCambio);
                     Central.diasRestantes--;
                     ProyectoSO.dashboard.setDiasRestantes(Central.diasRestantes);
                 this.mutexTiempo.release();
                 System.out.println("duermo resto del dia");
                 Central.accionJefe = "Durmiendo";
                 ProyectoSO.dashboard.setAccionJefe(Central.accionJefe);
-                Thread.sleep((long) (Central.tiempoDia - this.tiempoCambio));    
+                Thread.sleep((Central.tiempoDia * 1000) - this.tiempoCambio);    
                 
             } catch (InterruptedException ex) {
                 System.out.println("Fallo en el Jefe "+ ex);
