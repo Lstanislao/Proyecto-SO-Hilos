@@ -28,12 +28,14 @@ public class Jefe extends Thread {
                 Central.accionJefe = "Esperando";
                 ProyectoSO.dashboard.setAccionJefe(Central.accionJefe);
                 this.mutexTiempo.acquire();
-                System.out.println("Cambiando dia");
+                if (Central.diasRestantes > 0) {
+                    System.out.println("Cambiando dia");
                     Central.accionJefe = "Cambiando dia";
                     ProyectoSO.dashboard.setAccionJefe(Central.accionJefe);
                     Thread.sleep(tiempoCambio);
                     Central.diasRestantes--;
                     ProyectoSO.dashboard.setDiasRestantes(Central.diasRestantes);
+                }
                 this.mutexTiempo.release();
                 System.out.println("duermo resto del dia");
                 Central.accionJefe = "Durmiendo";

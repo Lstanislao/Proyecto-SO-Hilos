@@ -43,6 +43,7 @@ public class Gerente extends Thread {
                             Central.accionGerente = "Desplegando";
                             ProyectoSO.dashboard.setAccionGerente(Central.accionGerente);
                             Central.consolasProducidas = 0;
+                            ProyectoSO.dashboard.setConsolasProducidas(Central.consolasProducidas);
                             Central.diasRestantes = Central.diasDespacho;
                             ProyectoSO.dashboard.setDiasRestantes(Central.diasRestantes);
                         this.mutexConsolas.release();
