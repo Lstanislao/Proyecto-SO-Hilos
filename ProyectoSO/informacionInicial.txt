@@ -1,4 +1,4 @@
-Dia en segundos: 3
+Dia en segundos: 10
 Dias entre despachos: 10
 Capacidad maxima en almacen de botones: 45
 Capacidad maxima en almacen de pantallas: 40

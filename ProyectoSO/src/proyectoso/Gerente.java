@@ -29,6 +29,8 @@ public class Gerente extends Thread {
                 Central.accionGerente = "Esperando";
                 ProyectoSO.dashboard.setAccionGerente(Central.accionGerente);
                 this.mutexTiempo.acquire();
+                    Central.accionGerente = "Consultando";
+                    ProyectoSO.dashboard.setAccionGerente(Central.accionGerente);
                     if (Central.diasRestantes == 0) {
                         this.mutexConsolas.acquire();
                             //Despliegue y se reinicializan contadores
