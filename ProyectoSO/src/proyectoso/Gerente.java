@@ -32,6 +32,7 @@ public class Gerente extends Thread {
                     if (Central.diasRestantes == 0) {
                         this.mutexConsolas.acquire();
                             //Despliegue y se reinicializan contadores
+                            
                             Central.accionGerente = "Desplegando";
                             ProyectoSO.dashboard.setAccionGerente(Central.accionGerente);
                             Central.consolasProducidas = 0;
