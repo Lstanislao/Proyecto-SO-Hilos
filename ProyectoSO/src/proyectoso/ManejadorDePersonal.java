@@ -29,7 +29,7 @@ public class ManejadorDePersonal {
     ProductorPantallas [] ProPantallasAct = new ProductorPantallas [Central.maxProdPantallas];
     public int numProPantallas = 0;
     
-    ProductorTarjetasSD [] ProTarjetasSDAct = new ProductorTarjetasSD [Central.maxAlmacenTarjetas];
+    ProductorTarjetasSD [] ProTarjetasSDAct = new ProductorTarjetasSD [Central.maxProdTarjetas];
     public int numProTarjetasSD = 0;
     
     Ensamblador [] EnsambladoresAct = new Ensamblador [Central.maxEnsambladores];
@@ -66,13 +66,6 @@ public class ManejadorDePersonal {
             //Guardo el hilo en mi array de producotres activos
             ProBotonesAct[index] = proBotones;
             
-            //Este print se puede quitar
-            for (int i = 0; i < 3; i++) {
-                System.out.println(i);
-                System.out.println(ProBotonesAct[i]);
-            }
-            
-            
             //Pongo el hilo a correr
             proBotones.start();
             numProBotones++;
@@ -93,8 +86,6 @@ public class ManejadorDePersonal {
             //El index donde voy a modificar el array de productores activos
             int index = numProBotones;
             
-            System.out.println(numProBotones+ "ESTOS SON LOS PRODUCTORES DE BOTONES QUE QUEDAN "+ ProBotonesAct[index]);
-            
             //Saco la instacia del hilo que voy a despedir y le pongo el active false
             ProductorBotones proDespedido = ProBotonesAct[index];
             proDespedido.activo = false;
@@ -113,7 +104,6 @@ public class ManejadorDePersonal {
     
     public void ContratarProJoystick() {
         
-        System.out.println("NUMERO DE productores de joystic " + numProJoystick);
         if (numProJoystick < Central.maxProdJoystick) {
             //Intancio el hilo
             ProductorJoystick proJoystick = new ProductorJoystick(mutexJoystick, semProJoystick, semEnsJoystick);
@@ -123,12 +113,6 @@ public class ManejadorDePersonal {
             
             //Guardo el hilo en mi array de producotres activos
             ProJoystickAct[index] = proJoystick;
-            
-            //Este print se puede quitar
-            for (int i = 0; i < 3; i++) {
-                System.out.println(i);
-                System.out.println(ProJoystickAct[i]);
-            }
             
             //Pongo el hilo a correr
             proJoystick.start();
@@ -151,8 +135,6 @@ public class ManejadorDePersonal {
             //El index donde voy a modificar el array de productores activos
             int index = numProJoystick;
             
-            System.out.println(numProJoystick+ "ESTOS SON LOS PRODUCTORES DE JOYSTICK QUE QUEDAN ");
-            
             //Saco la instacia del hilo que voy a despedir y le pongo el active false
             ProductorJoystick proDespedido = ProJoystickAct[index];
             proDespedido.activo = false;
@@ -170,8 +152,6 @@ public class ManejadorDePersonal {
     
     
     public void ContratarProPantallas() {
-
-        System.out.println("NUMERO DE productores de pantalla " + numProPantallas);
         if (numProPantallas < Central.maxProdPantallas) {
             //Intancio el hilo
             ProductorPantallas proPantallas = new ProductorPantallas(
@@ -183,12 +163,6 @@ public class ManejadorDePersonal {
             
             //Guardo el hilo en mi array de producotres activos
             ProPantallasAct[index] = proPantallas;
-            
-            //Este print se puede quitar
-            for (int i = 0; i < 3; i++) {
-                System.out.println(i);
-                System.out.println(ProPantallasAct[i]);
-            }
             
             //Pongo el hilo a correr
             proPantallas.start();
@@ -203,7 +177,6 @@ public class ManejadorDePersonal {
     
     
     public void DespedirProPantallas() {
-        System.out.println(numProPantallas+ "DESPEDI AL DE LAS PANTALLAS");
         if(numProPantallas > 0){
             
             //Disminuyo en numero de productores
@@ -212,7 +185,6 @@ public class ManejadorDePersonal {
             //El index donde voy a modificar el array de productores activos
             int index = numProPantallas;
             ProyectoSO.dashboard.setProPantallas(numProPantallas);
-            System.out.println(numProPantallas+ "ESTOS SON LOS PRODUCTORES DE pantallas QUE QUEDAN ");
             
             //Saco la instacia del hilo que voy a despedir y le pongo el active false
             ProductorPantallas proDespedido = ProPantallasAct[index];
@@ -230,8 +202,6 @@ public class ManejadorDePersonal {
     
     
     public void ContratarProTarjetasSD() {
-
-        System.out.println("NUMERO DE productores de TarjetasSD " + numProTarjetasSD);
         if (numProTarjetasSD < Central.maxProdTarjetas) {
             //Intancio el hilo
             ProductorTarjetasSD proTarjetasSD = new ProductorTarjetasSD( mutexTarjetaSD, semProTarjetaSD, semEnsTarjetasSD);
@@ -241,12 +211,6 @@ public class ManejadorDePersonal {
             
             //Guardo el hilo en mi array de producotres activos
             ProTarjetasSDAct[index] = proTarjetasSD;
-            
-            //Este print se puede quitar
-            for (int i = 0; i < 3; i++) {
-                System.out.println(i);
-                System.out.println(ProTarjetasSDAct[i]);
-            }
             
             //Pongo el hilo a correr
             proTarjetasSD.start();
@@ -260,7 +224,6 @@ public class ManejadorDePersonal {
     }
     
     public void DespedirProTarjetasSD() {
-    
         if(numProTarjetasSD > 0){
             
             //Disminuyo en numero de productores
@@ -268,8 +231,6 @@ public class ManejadorDePersonal {
             
             //El index donde voy a modificar el array de productores activos
             int index = numProTarjetasSD;
-            
-            System.out.println(numProTarjetasSD+ "ESTOS SON LOS PRODUCTORES DE TarjetasSD QUE QUEDAN ");
             
             //Saco la instacia del hilo que voy a despedir y le pongo el active false
             ProductorTarjetasSD proDespedido = ProTarjetasSDAct[index];
@@ -286,8 +247,6 @@ public class ManejadorDePersonal {
     }
     
     public void ContratarEnsamblador() {
-
-        System.out.println("NUMERO DE ensambladores " + numEnsambladores);
         if (numEnsambladores < Central.maxEnsambladores) {
             //Intancio el hilo
             Ensamblador ensamblador = new Ensamblador(mutexBotones, mutexPantallasNormal, mutexPantallasTactil,
@@ -302,12 +261,6 @@ public class ManejadorDePersonal {
             //Guardo el hilo en mi array de producotres activos
             EnsambladoresAct[index] = ensamblador;
             
-            //Este print se puede quitar
-            for (int i = 0; i < 3; i++) {
-                System.out.println(i);
-                System.out.println(EnsambladoresAct[i]);
-            }
-            
             //Pongo el hilo a correr
             ensamblador.start();
             numEnsambladores++;
@@ -320,7 +273,6 @@ public class ManejadorDePersonal {
     }
     
     public void DespedirEnsamblador() {
-    
         if(numEnsambladores > 0){
             
             //Disminuyo en numero de productores
@@ -328,8 +280,6 @@ public class ManejadorDePersonal {
             
             //El index donde voy a modificar el array de productores activos
             int index = numEnsambladores;
-            
-            System.out.println(numEnsambladores + "ESTOS SON LOS ensambladores QUE QUEDAN ");
             
             //Saco la instacia del hilo que voy a despedir y le pongo el active false
             Ensamblador ensDespedido = EnsambladoresAct[index];

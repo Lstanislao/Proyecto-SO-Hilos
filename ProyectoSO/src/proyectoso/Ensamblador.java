@@ -64,45 +64,33 @@ public class Ensamblador extends Thread{
                     if (activo) {
                         //BOTONES
                         this.mutexBotones.acquire();
-                            System.out.println("CONSUMI BOTONES");
                             Central.numBotones = Central.numBotones - 5;
                             ProyectoSO.dashboard.setBotonesProducidos(Central.numBotones);
-                            System.out.println("El valor de botones es " + Central.numBotones );
                         this.mutexBotones.release();
                         
                         //JOYSTICK
                         this.mutexJoystick.acquire();
-                            System.out.println("CONSUMI JOYSTICK");
                             Central.numJoystick = Central.numJoystick -2;
-                            System.out.println("El valor de joystick es " + Central.numJoystick );
                             ProyectoSO.dashboard.setJoystickProducidos(Central.numJoystick);
                         this.mutexJoystick.release();
                         
                         //TAREJTA SD
                         this.mutexTarjetaSD.acquire();
-                            System.out.println("CONSUMI SD");
                             Central.numTarjetasSD = Central.numTarjetasSD -1;
-                            System.out.println("El valor de tarjeta es " + Central.numTarjetasSD );
                             ProyectoSO.dashboard.setTarjetasSDProducidas(Central.numTarjetasSD);
                         this.mutexTarjetaSD.release();
                         
                         //PANTALLA NORMAL
                         this.mutexPantallasNormal.acquire();
-                            System.out.println("CONSUMI pantalla normal");
                             Central.numPantallasNormales = Central.numPantallasNormales - 1;
-                            System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
                             ProyectoSO.dashboard.setPantallasNormalesProducidas(Central.numJoystick);
                         this.mutexPantallasNormal.release();
 
                         //PANTALLA TACTIL
                         this.mutexPantallasTactil.acquire();
-                            System.out.println("CONSUMI pantalla tactil");
                             Central.numPantallasTactiles = Central.numPantallasTactiles - 1;
-                            System.out.println("El valor de pantallas normales es " + Central.numPantallasTactiles );
                             ProyectoSO.dashboard.setPantallasTactilesProducidas(Central.numJoystick);
                         this.mutexPantallasTactil.release();
-                        
-                        
                     }
                 
                 //Libero espacio en almacenes
@@ -112,13 +100,13 @@ public class Ensamblador extends Thread{
                 this.semProPantallas.release(2);
                 
                 Thread.sleep(Central.tiempoDia * this.tiempoEnsamblaje);
+                
+                //Cambio numero de consolas
                 this.mutexConsolas.acquire();
-                System.out.println("produci consola");
+                System.out.println("Produci una consola\n");
                     Central.consolasProducidas++;
                     ProyectoSO.dashboard.setConsolasProducidas(Central.consolasProducidas);
                 this.mutexConsolas.release();
-                
-                System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA PRODUCI UNA CONSOLA");
                 
             } catch (InterruptedException ex) {
                 System.out.println("Fallo en el ensamblador "+ ex);

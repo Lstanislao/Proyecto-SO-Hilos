@@ -95,14 +95,13 @@ public class Central {
             BufferedReader bufferedReader
                     = new BufferedReader(fileReader);
 
+            //Leyendo cada linea del archivo
             while ((linea = bufferedReader.readLine()) != null) {
                 if (!linea.equals("")) {
 
                     // Asignando valores
                     itemsLinea = linea.split(": ");
-                    System.out.println("Mi linea es" + itemsLinea[0]);
                     numero = Integer.parseInt(itemsLinea[1]);
-                    System.out.println("Mi numero es" + numero);
 
                     switch (itemsLinea[0]) {
                         case "Dia en segundos":
@@ -169,6 +168,10 @@ public class Central {
                 JOptionPane.showMessageDialog(dashboard, "Los datos ingresados de productores de tarjetas son invalidos!");
             } else if (inicialEnsambladores > maxEnsambladores || inicialEnsambladores < 0 || maxEnsambladores < 0) {
                 JOptionPane.showMessageDialog(dashboard, "Los datos ingresados de ensambladores son invalidos!");
+            } else if (maxAlmacenBotones < 0 || maxAlmacenPantallas < 0 || maxAlmacenJoystick < 0 || maxAlmacenTarjetas < 0) {
+                JOptionPane.showMessageDialog(dashboard, "Los datos ingresados de cantidad maxima en almacenes son invalidos!");
+            } else if (tiempoDia <= 0 || diasDespacho <= 0) {
+                JOptionPane.showMessageDialog(dashboard, "Los datos ingresados sobre los dias son invalidos!");
             } else {
                 iniciado = true;
             }
@@ -191,17 +194,13 @@ public class Central {
 
     public static void IniciarSimulacion() {
         CargarInfomacionInicial();
-        
-        
 
         if (iniciado) {
+            //Inicializando semaforos
             Semaphore mutexTiempo = new Semaphore(1);
             Semaphore mutexConsolas = new Semaphore(1);
 
             Semaphore mutexBotones = new Semaphore(1);
-
-            System.out.println("iniciando semProBotones" + maxAlmacenBotones);
-
             Semaphore semProBotones = new Semaphore(maxAlmacenBotones);
             Semaphore semEnsBotones = new Semaphore(0);
 
@@ -211,13 +210,12 @@ public class Central {
             Semaphore semEnsPantallasNormal = new Semaphore(0);
             Semaphore semEnsPantallasTactil = new Semaphore(0);
 
-            Semaphore mutexTarjetaSD = new Semaphore(1);
             Semaphore mutexJoystick = new Semaphore(1);
-
             Semaphore semEnsJoystick = new Semaphore(0);
-            Semaphore semEnsTarjetaSD = new Semaphore(0);
-
             Semaphore semProJoystick = new Semaphore(maxAlmacenJoystick);
+            
+            Semaphore mutexTarjetaSD = new Semaphore(1);
+            Semaphore semEnsTarjetaSD = new Semaphore(0);
             Semaphore semProTarjetaSD = new Semaphore(maxAlmacenTarjetas);
 
 
@@ -229,6 +227,7 @@ public class Central {
 
             dashboard.setDiasRestantes(Central.diasRestantes);
             
+            //Iniciando jefe, gerente, productores y ensambladores
             Jefe jefe = new Jefe(mutexTiempo);
             jefe.start();
 
@@ -252,7 +251,7 @@ public class Central {
                 manejadorDePersonal.ContratarProTarjetasSD();
             }
             
-            for (int i = 0; i < inicialProdTarjetas; i++) {
+            for (int i = 0; i < inicialEnsambladores; i++) {
                 manejadorDePersonal.ContratarEnsamblador();
             }
             
