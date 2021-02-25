@@ -34,18 +34,20 @@ public class ProductorBotones extends Thread {
     public void run() {
         while (activo) {
             try {
+                //Espero a que haya espacio en almacen
                 this.semProBotones.acquire();
+                    //Se produce
                     Thread.sleep(this.diasProduccion);
+                    
+                    //Aumento numero
                     this.mutex.acquire();
                         Central.numBotones++;
                         ProyectoSO.dashboard.setBotonesProducidos(Central.numBotones);
-                        System.out.println("El valor de botones es " + Central.numBotones);
                     this.mutex.release();
                 this.semEnsBotones.release();
   
             } catch (InterruptedException ex) {
-                 System.out.println("error");
-               System.out.println("Fallo en el productor de Botones"+ ex);
+                System.out.println("Fallo en el productor de Botones"+ ex);
             }
         }
 

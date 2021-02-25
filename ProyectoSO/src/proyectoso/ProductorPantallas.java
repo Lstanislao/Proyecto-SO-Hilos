@@ -43,21 +43,23 @@ public class ProductorPantallas extends Thread {
         while (activo) {
 
             try {
-                //Pantalla normal
+                //Espero a que haya espacio en almacen
                 this.semProPantallas.acquire(2);
+                    //Pantalla normal
+                    //Se produce
                     Thread.sleep(this.diasProduccionNormales);
                     this.mutexNormal.acquire();
                         Central.numPantallasNormales++;
-                        System.out.println("El valor de pantallas normales es " + Central.numPantallasNormales);
                         ProyectoSO.dashboard.setPantallasNormalesProducidas(Central.numJoystick);
                     this.mutexNormal.release();
                     this.semEnsPantallasNormal.release();
 
                     //Pantalla tactil
-                    this.mutexTactil.acquire();
+                    //Se produce
                     Thread.sleep(this.diasProduccionTactiles);
+                    //Aumento numero
+                    this.mutexTactil.acquire();
                         Central.numPantallasTactiles++;
-                        System.out.println("El valor de pantallas tactiles es " + Central.numPantallasNormales);
                         ProyectoSO.dashboard.setPantallasTactilesProducidas(Central.numJoystick);
                     this.mutexTactil.release();
                     this.semEnsPantallasTactil.release();

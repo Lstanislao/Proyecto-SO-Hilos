@@ -32,11 +32,13 @@ public class ProductorJoystick extends Thread {
     public void run() {
         while (activo) {
             try {
+                //Espero a que haya espacio en almacen
                 this.semProJoystick.acquire();
+                    //Se produce
                     Thread.sleep(this.diasProduccion);
+                    //Aumento numero
                     this.mutex.acquire();
                         Central.numJoystick++;
-                        System.out.println("El valor de joystick es " + Central.numJoystick);
                         ProyectoSO.dashboard.setJoystickProducidos(Central.numJoystick);
                     this.mutex.release();
                 this.semEnsJoystick.release();

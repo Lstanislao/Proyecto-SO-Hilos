@@ -32,11 +32,13 @@ public class ProductorTarjetasSD extends Thread {
     public void run() {
         while (activo) {
             try {
+                //Espero a que haya espacio en almacen
                 this.semProTarjetasSD.acquire();
+                    //Se produce
                     Thread.sleep(this.diasProduccion);
+                    //Aumento numero
                     this.mutex.acquire();
                         Central.numTarjetasSD++;
-                        System.out.println("El valor de tarjetaSD es " + Central.numTarjetasSD);
                         ProyectoSO.dashboard.setTarjetasSDProducidas(Central.numTarjetasSD);
                     this.mutex.release();
                 this.semEnsTarjetasSD.release();

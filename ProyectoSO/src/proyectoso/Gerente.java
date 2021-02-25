@@ -29,19 +29,18 @@ public class Gerente extends Thread {
                 
                 Central.accionGerente = "Esperando";
                 ProyectoSO.dashboard.setAccionGerente(Central.accionGerente);
-                System.out.println("soy gerente y estoy esperando" + Central.accionGerente);
+                System.out.println("\nEl gerente esta: " + Central.accionGerente);
                 this.mutexTiempo.acquire();
                     Central.accionGerente = "Consultando";
                     
-                    System.out.println("SOY GERENTE Y ESTOY CONSULTANDO" + Central.accionGerente);
+                    System.out.println("\nEl gerente esta: " + Central.accionGerente);
                     ProyectoSO.dashboard.setAccionGerente(Central.accionGerente);
                     if (Central.diasRestantes == 0) {
-                        
+                        //Despliegue y se reinicializan contadores
                         this.mutexConsolas.acquire();
-                            //Despliegue y se reinicializan contadores
-                            
                             Central.accionGerente = "Desplegando";
                             ProyectoSO.dashboard.setAccionGerente(Central.accionGerente);
+                            System.out.println("\nEl gerente esta: " + Central.accionGerente);
                             Central.consolasProducidas = 0;
                             ProyectoSO.dashboard.setConsolasProducidas(Central.consolasProducidas);
                             Central.diasRestantes = Central.diasDespacho;
@@ -51,11 +50,11 @@ public class Gerente extends Thread {
                 this.mutexTiempo.release();
                 Central.accionGerente = "Durmiendo";
                 ProyectoSO.dashboard.setAccionGerente(Central.accionGerente);
-                System.out.println("soy gerente y me voy a dormir");
+                System.out.println("\nEl gerente esta: " + Central.accionGerente);
                 Thread.sleep(this.tiempoDormir);    
                 
             } catch (InterruptedException ex) {
-                System.out.println("Fallo en el Geretnte "+ex);
+                System.out.println("Fallo en el Gerente "+ex);
             }
         }
     
