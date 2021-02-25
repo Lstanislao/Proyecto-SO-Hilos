@@ -156,7 +156,7 @@ public class Central {
                     }
                 }
             }
-
+            
             //Validaciones
             if (inicialProdBotones > maxProdBotones || inicialProdBotones < 0 || maxProdBotones < 0) {
                 JOptionPane.showMessageDialog(dashboard, "Los datos ingresados de productores de botones son invalidos!");

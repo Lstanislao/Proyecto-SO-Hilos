@@ -61,7 +61,7 @@ public class Ensamblador extends Thread{
                 this.semEnsPantallasNormal.acquire(1);
                 this.semEnsPantallasTactil.acquire(1);
                 
-                    if (activo) {
+                   
                         //BOTONES
                         this.mutexBotones.acquire();
                             Central.numBotones = Central.numBotones - 5;
@@ -91,7 +91,7 @@ public class Ensamblador extends Thread{
                             Central.numPantallasTactiles = Central.numPantallasTactiles - 1;
                             ProyectoSO.dashboard.setPantallasTactilesProducidas(Central.numJoystick);
                         this.mutexPantallasTactil.release();
-                    }
+                    
                 
                 //Libero espacio en almacenes
                 this.semProBotones.release(5);
