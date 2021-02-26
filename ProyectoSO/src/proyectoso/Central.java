@@ -116,6 +116,7 @@ public class Central {
                             break;
                         case "Capacidad maxima en almacen de pantallas":
                             maxAlmacenPantallas = numero;
+                            System.out.println("eee" + numero);
                             break;
                         case "Capacidad maxima en almacen de joysticks":
                             maxAlmacenJoystick = numero;
@@ -239,7 +240,7 @@ public class Central {
                 manejadorDePersonal.ContratarProBotones();
             }
             
-            for (int i = 0; i < inicialProdBotones; i++) {
+            for (int i = 0; i < inicialProdJoystick; i++) {
                 manejadorDePersonal.ContratarProJoystick();
             }
             

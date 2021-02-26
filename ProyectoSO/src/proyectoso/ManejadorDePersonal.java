@@ -156,7 +156,7 @@ public class ManejadorDePersonal {
             //Intancio el hilo
             ProductorPantallas proPantallas = new ProductorPantallas(
                 mutexPantallasNormal, mutexPantallasTactil,
-                semProPantallas, semEnsPantallasTactil, semEnsPantallasNormal);
+                semProPantallas, semEnsPantallasNormal, semEnsPantallasTactil);
             
             // Es el index donde voy a modificar mi array
             int index = numProPantallas;
@@ -217,8 +217,8 @@ public class ManejadorDePersonal {
             numProTarjetasSD++;
             ProyectoSO.dashboard.setProTarjetasSD(numProTarjetasSD);
         }else{
-            JOptionPane.showMessageDialog(null, "No se puede contratar más productores de tarjetas, excede el máximo: " 
-                    + Central.maxProdPantallas);
+            JOptionPane.showMessageDialog(null, "No se puede contratar más productores de lectores de tarjetas, excede el máximo: " 
+                    + Central.maxProdTarjetas);
         }
 
     }

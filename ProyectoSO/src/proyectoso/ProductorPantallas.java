@@ -50,7 +50,7 @@ public class ProductorPantallas extends Thread {
                     Thread.sleep(this.diasProduccionNormales);
                     this.mutexNormal.acquire();
                         Central.numPantallasNormales++;
-                        ProyectoSO.dashboard.setPantallasNormalesProducidas(Central.numJoystick);
+                        ProyectoSO.dashboard.setPantallasNormalesProducidas(Central.numPantallasNormales);
                     this.mutexNormal.release();
                     this.semEnsPantallasNormal.release();
 
@@ -60,7 +60,7 @@ public class ProductorPantallas extends Thread {
                     //Aumento numero
                     this.mutexTactil.acquire();
                         Central.numPantallasTactiles++;
-                        ProyectoSO.dashboard.setPantallasTactilesProducidas(Central.numJoystick);
+                        ProyectoSO.dashboard.setPantallasTactilesProducidas(Central.numPantallasTactiles);
                     this.mutexTactil.release();
                     this.semEnsPantallasTactil.release();
 

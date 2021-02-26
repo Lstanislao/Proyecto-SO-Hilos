@@ -83,13 +83,13 @@ public class Ensamblador extends Thread{
                         //PANTALLA NORMAL
                         this.mutexPantallasNormal.acquire();
                             Central.numPantallasNormales = Central.numPantallasNormales - 1;
-                            ProyectoSO.dashboard.setPantallasNormalesProducidas(Central.numJoystick);
+                            ProyectoSO.dashboard.setPantallasNormalesProducidas(Central.numPantallasNormales);
                         this.mutexPantallasNormal.release();
 
                         //PANTALLA TACTIL
                         this.mutexPantallasTactil.acquire();
                             Central.numPantallasTactiles = Central.numPantallasTactiles - 1;
-                            ProyectoSO.dashboard.setPantallasTactilesProducidas(Central.numJoystick);
+                            ProyectoSO.dashboard.setPantallasTactilesProducidas(Central.numPantallasTactiles);
                         this.mutexPantallasTactil.release();
                     
                 
